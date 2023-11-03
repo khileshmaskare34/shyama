@@ -1,0 +1,64 @@
+* {
+    font-family: arial;
+    box-sizing: border-box;
+  }
+  p {
+    margin: 0;
+    /* margin-top: 10v; */
+  }
+  div.select {
+      min-width: 230px;
+    margin-top: 1vh;
+  
+    min-height: 55px;
+    padding-right: 15px;
+    margin-left: 10px;
+    display: inline-block;
+    border-radius: 8px;
+    border: 1px solid #999;
+    position: relative;
+    background: rgb(187, 129, 129);
+  }
+  div.select p {
+    margin-top: 12px;
+    /* margin-left: 27px; */
+      padding: 5px;
+      width: 100%;
+  }
+  div.select:after {
+    content: "▼";
+      position: absolute;
+      right: 6px;
+      top: 14px;
+      font-size: 19px;
+  }
+  div.select .hidden {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      transition: .1s;
+      background: white;
+      border: 1px solid #999;
+      z-index: 10;
+      width: 100%;
+  }
+  div.select:hover .hidden {
+      visibility: visible;
+      opacity: 1;
+    
+  }
+  div.select p:hover, div.select:hover {
+    background: #d15959;
+    /* margin-left: -7; */
+  }
+  .select{
+    display: none;
+    padding: 0.9vw 0;
+}
+
+  @media screen and (max-width:600px) {
+    .select{
+        display: none;
+    }
+    
+  }

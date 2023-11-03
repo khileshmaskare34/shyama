@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Lounges</title>
+    <link rel="stylesheet" href="stylesheets/chooseLounge.css">
+</head>
+<body>
+
+    <div id="main">
+        <h1>Registered Lounges in Station</h1>
+        <ul class="lounge-list">
+     <% for(var i = 0; i < lounges.length; i++){ %>
+
+            <li class="lounge-item">
+               
+                <div class="lounge-details">
+                    <img src="/images/WhatsApp Image 2023-07-17 at 14.41.10.jpg" alt="">
+                    <h1><%= lounges[i].loungeName %></h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p class="seats">Number of seats in lounge - <%= lounges[i].noOfSeats %></p>
+                    <a href="/chooseLaunge/<%= lounges[i]._id %>">Book Now</a>
+                </div>
+            </li>
+    <% } %> 
+        </ul>
+    </div>
+    
+</body>
+</html> 

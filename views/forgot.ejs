@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="/stylesheets/forgot.css">
+</head>
+<body>
+    <h3>Enter your email address to reset your password</h3>
+    
+    <form action="/forgot" method="post">
+        <label for="mail">Email</label><br>
+        <input type="email" id="name" name="newemail" placeholder="Enter your email address" required onblur="validateName(name)">
+        <button type="submit">Send OTP</button>
+        <span id="nameError">There was an error with your email</span>
+    </form>
+    
+    <script>
+        function validateName(input) {
+            // You can add custom validation logic here if needed
+            if (input.value.trim() === "") {
+                document.getElementById("nameError").style.display = "block";
+            } else {
+                document.getElementById("nameError").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

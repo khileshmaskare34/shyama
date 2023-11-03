@@ -1,0 +1,96 @@
+/* Reset some default styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+/* Center the form vertically and horizontally */
+.otp-form {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Style the heading */
+.title h3 {
+  font-size: 24px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the info and message paragraphs */
+.info {
+  color: #09bb03;
+  font-family: Arial, sans-serif;
+}
+
+.msg {
+  font-family: Arial, sans-serif;
+}
+
+/* Style the OTP digit */
+.otp__digit {
+  font-size: 20px;
+}
+input[type="number"] {
+  border: none;
+  background-color: rgba(234, 233, 233, 0.911);
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 66%;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  padding: 12px 39px 13px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border: 1px solid #3ac162;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+/* Hover effect for the submit button */
+button[type="submit"]:hover {
+  background-color: #86cb97;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+  .otp-form {
+      max-width: 90%;
+  }
+
+  .otp-input-fields {
+      flex-direction: column;
+  }
+
+  .otp__digit {
+      width: 100%;
+      margin: 5px 0;
+  }
+}
+
+
+#message{
+  color: red;
+  text-align: center;
+}

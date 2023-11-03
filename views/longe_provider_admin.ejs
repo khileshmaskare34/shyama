@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lounge Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            scroll-behavior: smooth;
+        }
+
+        #main {
+            text-align: center;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            /* color: #333; */
+            margin-bottom: 10px;
+         /* color: #068932; */
+        
+        }
+
+        .lounge-box{
+            display: flex;
+            flex-wrap: wrap;
+            
+            
+        }
+        /* Lounge Card Styling */
+        .lounge-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            height: 300px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            max-width: 380px;
+        }
+      
+       
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Lounge Card Styling */
+     
+
+        .lounge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .lounge-card h1 {
+            font-size: 20px;
+            color: #333;
+            
+            margin: 10px 0;
+        }
+
+        /* Lounge Form Styling */
+        #registration-form {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+            width: 40vw;
+           margin-left: 27%;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 5%;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+     
+  #ff{
+    margin-top:13%;
+  }
+        .lounge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .lounge-card h1 {
+            font-size: 20px;
+            color: #333;
+            margin: 10px 0;
+        }
+    #gg{
+        margin-top: 12%;
+    }
+
+        /* Add New Lounge Form Styling */
+        #add-lounge-form {
+            display: none;
+        }
+        .username{
+            color: #068932;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Welcome,<span class="username"><%= LoungeUser.name %></span> </h1>
+        <!-- <h2>Your Registered Lounges</h2> -->
+    <div class="lounge-box .container " >
+        <% for (var i = 0; i < his_launges.length; i++) { %>
+        <div class="lounge-card .card-img-bottom  bg-gradient h-25 w-100">
+            <h1><a href="/lounge/laungeadminforaddingitems/<%= his_launges[i]._id %>"><%= his_launges[i].loungeName %></a></h1>
+            <p>Owner: <%= LoungeUser.name %></p>
+            <p>No. of Seats: <%= his_launges[i].noOfSeats %></p>
+            
+            <form id="gg" action="/lounge/edit_lounge" method="POST">
+                <input type="text" name="loungeId_for_delete" value="<%= his_launges[i]._id %>" style="visibility: hidden; display: none; ">
+                <input type="text" name="loungeName" placeholder="<%= his_launges[i].loungeName %>" >
+                <input type="text" name="loungePhoneNo" placeholder="<%= his_launges[i].loungePhoneNo%>" >
+                <input type="text" name="loungeEmail" placeholder="<%= his_launges[i].loungeEmail %>" >
+                <input type="text" name="noOfSeats" placeholder="<%= his_launges[i].noOfSeats%>" >
+                <button id="ff" type="submit" class="btn btn-outline-primary mb-12 ">Edit Lounge Information</button>
+            </form>
+            <form action="/lounge/delete_lounge" method="POST">
+                <input type="text" name="loungeId_for_delete" value="<%= his_launges[i]._id %>" style="visibility: hidden; display: none; ">
+                <button   id="dd" class="btn btn-danger mt-2"  type="submit">Delete Lounge</button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+        <!-- <h2 class="">Add New Lounge</h2> -->
+        <button id="toggle-add-form" class="btn btn-outline-danger"><a href="#form_add" class="btn p-md-0">Add New Lounge</a></button>
+        <form id="add-lounge-form" action="/lounge/loungeRegistration" method="post">
+            <div class="form-group " id="form_add">
+                <label for="name">Lounge Name</label>
+                <input type="text" id="name" name="loungeName" placeholder="loungeName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Lounge Email</label>
+                <input type="email" id="email" name="loungeEmail" placeholder="loungeEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Lounge Phone Number</label>
+                <input type="tel" id="phone" name="loungePhoneNo" placeholder="loungePhoneNo">
+            </div>
+            <div class="form-group">
+                <label for="seats">Lounge No. of Seats</label>
+                <input type="text" id="seats" name="noOfSeats" placeholder="noOfSeats">
+            </div>
+            <div class="form-group">
+                <label for="station">Station Name</label>
+                <input type="text" id="station" name="stationLocation" placeholder="stationLocation">
+            </div>
+            <input type="text" name="loungeProviderId" value="<%= loungeProvider._id%>" style="visibility: hidden;">
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    
+    <script>
+        const toggleAddFormButton = document.getElementById('toggle-add-form');
+        const addLoungeForm = document.getElementById('add-lounge-form');
+
+        toggleAddFormButton.addEventListener('click', () => {
+            addLoungeForm.style.display = addLoungeForm.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>

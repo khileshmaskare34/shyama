@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="shortcut icon" href="\images\logot.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header">
+        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <!-- <nav class="navbar"> -->
+          <ul class="main-nav">
+            <li><a href="/get-started"><i class="ri-arrow-left-fill"></i></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+    
+          <ul class="burgger">
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+          <i id="menu-toggle" class="ri-menu-fold-line"></i>
+    
+    </header>
+    <div class="main-container">
+        <div class="image-container">
+            <img src="../images/WhatsApp Image 2023-07-17 at 14.41.10.jpg" alt="Table Book Image">
+        </div>
+        <div class="form-container">
+            <h2>Login</h2>
+            <form class="login-form" action="/user_signin" method="post">
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter user email" name="email" required />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter user password" name="password" required/>
+                </div>
+                <a href="/forgot">forgot password</a>
+                <button type="submit">Login</button>
+                <button class="google-btn">Login with Google</button>
+                <p class="toggle-form-login">If you don't have an account? Click here to <a href="/user_signup">Register</a></p>
+            </form>
+            
+            
+        </div>
+    </div>
+    <%- include ('footer/footer.ejs') -%>
+  <script src="\javascripts\nav.js"></script>
+
+</body>
+</html>

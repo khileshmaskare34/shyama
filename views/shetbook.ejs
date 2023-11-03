@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/shetbook.css">
+</head>
+<body>
+
+
+  <div class="upperform">
+    <h1>loungeName:<%= launge.loungeName %></h1>
+   
+    <div>
+      Number of Seats : <input type="number" id="Numseats" required>
+    </div>
+  </div>
+
+  <div class="seatStructure">
+    <center>
+      
+    <table id="seatsBlock">
+     
+    <% for(var i=0;i< launge.noOfSeats; i++){%>
+      <tr>
+        <form action="/choosen/<%= launge._id %>" method="post">
+          <% for(var i=0;i< launge.noOfSeats; i++){ %>
+             <% if(i%10==0){ %>
+                <br>
+             <% } %>
+
+              <label for="myCheckbox" id="A<%= i+1 %>"> <%=i+1%></label>
+
+              <input type="checkbox" style="background-color: aliceblue;" class="seats" id="f<%= i+1 %>"  name="seat" value="A<%= i+1 %>">
+
+
+
+              <script>
+
+                var individual ="A<%= i+1 %>";
+                var arrrrrr = []
+                var arr =`<%= totalSeats %>`;
+                arrrrrr.push(arr)
+                // }
+                var array = arrrrrr[0].split(',')
+                
+                console.log(array)
+                console.log(arrrrrr.indexOf(individual))
+                
+                  var kuch = document.querySelector('#A<%= i+1 %>')
+                  var luck = document.querySelector('#f<%= i+1 %>')
+
+                  console.log("lcukky"+luck)
+
+                if (array.indexOf(individual) == -1){
+                
+                }else{
+                kuch.style.backgroundColor = 'red';
+                // var checkbox = document.getElementById("myCheckbox");
+
+
+                luck.style.borderColor = "darkred";
+                luck.style.backgroundColor = "red";
+
+                luck.disabled = true;
+
+                // kuch.style.opacity = '0';  
+                }
+                  arr='';
+              </script>
+          <% } %>
+      </tr>
+         <br/><button type="submit">Confirm Selection</button>
+
+        </form>
+  <%  } %>
+   
+
+      
+    </table>
+      
+    </center>
+  </div>    
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/javascripts/shetbook.js"></script>
+</body>
+</html>

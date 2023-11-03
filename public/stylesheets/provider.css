@@ -1,0 +1,142 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  /* display: flex;
+  justify-content: center; */
+  /* align-items: center; */
+  /* min-height: 100vh; */
+}
+
+
+#main {
+  height: 80vh;
+  background-color: #fff;
+  
+  padding: 40px;
+ 
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  /* text-align: center;
+  max-width: 700px;
+  margin-top: 120px;
+  margin-left: 27%; */
+}
+
+.title {
+  font-size: 2rem;
+  color: #3498db;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user_box {
+
+  height: 60vh;
+  flex: 1;
+  margin: 0 10px;
+  padding: 20px;
+  /* border-radius: 8px; */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-shadow: 1px 1px black;
+  
+}
+
+.lounge {
+  background-color: #585232;
+  color: white;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+.shop {
+  background-color: #5d8f71;
+  color: white;
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.box_text {
+  margin: 3%;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: center;
+  justify-content: center;
+}
+
+button>a{
+text-decoration: none;
+
+color: #f0f0f0;
+}
+button{
+  margin-top: 1%;
+  margin-left: 35%;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  /* border-radius: 4px; */
+  font-weight: 700;
+  border: none;
+ border-top-left-radius: 10px;
+ border-bottom-right-radius: 10px;
+  background-color: rgb(217,4,3);
+ 
+  font-size:16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* .box_link {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+} */
+
+button:hover {
+  background-color: rgb(203, 134, 134);
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+
+
+/* Media Queries for Responsive Design */
+
+/* Small devices (up to 576px) */
+@media (max-width: 576px) {
+  #main {
+    height: auto; /* Adjust the height as needed */
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .user_boxes {
+    flex-direction: column;
+  }
+
+  .user_box {
+    height: auto; /* Adjust the height as needed */
+    margin: 10px 0;
+  }
+
+  button {
+    margin-left: 0;
+    width: 100%; /* Make the buttons full width */
+  }
+}

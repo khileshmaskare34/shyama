@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./stylesheets/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/nav.css">
+  <link rel="stylesheet" href="/stylesheets/function.css">
+
+</head>
+<body>
+  <div id="main">
+   
+    <header class="header">
+      <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <ul class="main-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#footer-container" >Contact</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="/user_account" id="contect">account</a></li>
+        </ul>
+
+        <ul class="burgger">
+          <li><a href="/">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#footer-container" >Contact</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="/user_account" id="contect">account</a></li>
+        </ul>
+        <i id="menu-toggle" class="ri-menu-fold-line"></i>
+
+    </header>
+    
+    
+   
+    <div class="functions">
+      <form action="/choiceFilling" method="post">
+       <label for="station">Choose Station:</label>
+   
+       <select id="station" name="stationName">
+         <% for(var i=0;i< station.length; i++){ %>
+         <option value="<%= station[i] %>" name="<%= station[i] %>" ><%= station[i] %></option>
+         <% } %>
+       </select>
+   
+       <label for="check-in-time">Check-in Time:</label>
+       <input type="datetime-local" id="check-in-time" name="checkIn">
+   
+       <label for="check-out-time"> Check-out Time:</label>
+       <input type="number" name="hours" id="check-out-time" placeholder="hours">
+     
+   
+         <button id="search-btn" type="submit">Search</button>
+      </form>
+    </div>
+
+    <%- include ('slider.ejs') -%>
+    <%- include ('about1.ejs') -%>
+    <%- include ('service.ejs') -%>
+    <%- include ('footer/footer.ejs') -%>
+    
+
+  </div>
+
+
+ <script src="/javascripts/script.js"></script>
+</body>
+</html>

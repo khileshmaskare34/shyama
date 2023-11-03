@@ -1,0 +1,116 @@
+/* Reset some default styles */
+body, h3, p, label {
+  margin: 0;
+  padding: 0;
+  font-size: 16px; /* Set default font size */
+}
+
+/* Main container */
+.main-container {
+  display: flex;
+  height: 85vh;
+}
+
+/* Image container */
+.image-container{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.image-container img {
+  max-height: 77%;
+  max-width: 95%;
+  border-radius: 20px; /* Increase the border-radius to make it a circle */
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Form container */
+.form-container{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../images/bg-image.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  padding: 40px;
+  box-sizing: border-box;
+  height: 88vh; /* Set the maximum height for the form container */
+}
+
+.form-container>h2{
+  font-size: 40px;
+}
+
+.login-form {
+  text-align: center;
+}
+
+.login-form div {
+  margin: 15px 0;
+}
+
+.login-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.login-form input {
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  background-color: #61e3ba;
+  padding: 14px 24px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #58ccce;
+}
+a{
+  text-decoration: none;
+  color: #15e3a2;
+}
+
+.toggle-form-login {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .image-container,
+  .form-container {
+    flex: none;
+    height: auto;
+  }
+}
+
+/* Additional media queries for other devices */
+/* Add your media queries as needed */

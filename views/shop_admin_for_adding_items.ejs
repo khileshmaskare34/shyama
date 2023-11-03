@@ -1,0 +1,230 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<h1> your items are </h1>
+<% for(var i=0;i< items.length; i++){ %>
+
+    <div style=" border: 2px solid black;">
+  <h1>Item Name :  <%= items[i].item_Name  %> </h1>
+  <h1>Item price :  <%= items[i].price %> </h1>
+  <h1>Item description :  <%= items[i].description %> </h1>
+  <img width="100" height="100" src="/upload/<%= items[i].Image %>" alt="">
+  
+
+
+  <form action="/delete_item" method="post">
+    <input type="text" name="itemId_for_delete" value="<%= items[i]._id %>" style="visibility: hidden; display: none;">
+<button type="submit"> Delete Item From your shop </button>
+</form>
+
+
+<form action="/edit_item" method="post" enctype="multipart/form-data">
+    <input type="text" name="itemId_for_delete" value="<%= items[i]._id %>" style="visibility: hidden;">
+
+    <input type="text" name="item_Name" placeholder="<%= items[i].item_Name%>">
+    <input type="text" name="description" placeholder="<%= items[i].description %>">
+    <input type="file" name="Image" placeholder="<%= items[i].Image %>">
+    <input type="text" name="price" placeholder="<%= items[i].price %>">
+    <input type="text" name="shop_id" value="<%= items[i].shop_id %>" style="visibility: hidden; display: none;">
+
+    <button type="submit"> edit item </button>
+</form>
+
+</div>
+
+
+    <% } %>
+
+   <a href="/add_items/<%= perticuler_shop._id %>"><button>add more items </button></a> 
+
+</body>
+</html>  -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Items</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #303f9f;
+            color: #fff;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .item-container {
+            border: 2px solid #ccc;
+            background-color: #fff;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 16px;
+            position: relative;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .item-name {
+            font-size: 24px;
+            margin: 0;
+            color: #303f9f;
+            font-weight: bold;
+        }
+        
+        .item-price {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .item-description {
+            margin: 10px 0;
+        }
+        
+        .item-image {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .action-button {
+            background-color: #303f9f;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .action-button:hover {
+            background-color: #3949ab;
+        }
+        
+        .edit-form {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        #ll{
+            background-color: #3949ab;
+        color: white;
+        font-weight: 600;
+            height: 32px;
+            width: 140px;
+            margin-top: 10px;
+            border-radius: 8px;
+
+        }
+        .edit-form input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .add-more {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .add-more button {
+            background-color: #303f9f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .add-more button:hover {
+            background-color: #3949ab;
+        }
+    </style>
+</head>
+<body>
+    
+<h1>Your Items</h1>
+
+<% for(var i = 0; i < items.length; i++) { %>
+    <div class="item-container">
+        <h2 class="item-name">Name : <%= items[i].item_Name %></h2>
+        <p class="item-price">Price: <%= items[i].price %></p>
+        <p class="item-description">Description : <%= items[i].description %></p>
+        <img class="item-image" src="/upload/<%= items[i].Image %>" alt="Item Image">
+        
+        <div class="item-actions">
+            <button class="action-button" onclick="toggleEditForm('<%= items[i]._id %>')">Edit Item</button>
+        </div>  
+
+        <form action="/shop/delete_item" method="post">
+            <input type="text" name="itemId_for_delete" value="<%= items[i]._id %>" style="visibility: hidden; display: none;">
+        <button type="submit" id="ll"> Delete Item shop </button>
+        </form>
+
+
+        <!-- Edit Form for each item -->
+        <form id="edit-form-<%= items[i]._id %>" class="edit-form" action="/shop/edit_item" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="itemId_for_delete" value="<%= items[i]._id %>">
+            <input type="text" name="item_Name" placeholder="<%= items[i].item_Name %>">
+            <input type="text" name="description" placeholder="<%= items[i].description %>">
+            <input type="file" name="Image" placeholder="<%= items[i].Image %>">
+            <input type="text" name="price" placeholder="<%= items[i].price %>">
+            <input type="hidden" name="shop_id" value="<%= items[i].shop_id %>">
+            <button class="action-button" type="submit">Save Changes</button>
+        </form>
+    </div>
+<% } %>
+
+<div class="add-more">
+    <a href="/shop/add_items/<%= perticuler_shop._id %>"><button>Add More Items</button></a>
+</div>
+
+<script>
+    // JavaScript to toggle the visibility of edit forms
+    function toggleEditForm(itemId) {
+        var editForm = document.getElementById("edit-form-" + itemId);
+        editForm.style.display = editForm.style.display === "none" ? "block" : "none";
+    }
+</script>
+
+</body>
+</html>

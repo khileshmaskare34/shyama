@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="\stylesheets\function.css">
+  <title>Document</title>
+</head>
+<body>
+
+  
+  <div class="functions">
+   <form action="/choiceFilling" method="post">
+
+    <label class="lable-function" for="station">Choose Station:</label>
+
+    <select id="station" name="stationName">
+      <% for(var i=0;i< station.length; i++){ %>
+        <option value="<%= station[i] %>" name="<%= station[i] %>" ><%= station[i] %></option>
+      <% } %>
+    </select>
+
+    <label for="check-in-time" class="lable-function" >Check-in Time:</label>
+    <input type="datetime-local" id="check-in-time" name="checkIn">
+
+    <label for="check-out-time" class="lable-function" > Check-out Time:</label>
+    <input type="number" placeholder="hours" name="hours" id="check-out-time">
+  
+
+    <button id="search-btn" type="submit">Book my seat</button>
+
+     </form>
+     </div>
+</body>
+</html>

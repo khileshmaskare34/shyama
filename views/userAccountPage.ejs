@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userAccountPage</title>
+    <link rel="stylesheet" href="/stylesheets/userAccountPage.css">   
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+
+</head>
+<body>
+
+    <header class="header">
+                <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+                  <ul class="main-nav">
+                    <li><a href="/user_signin">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#footer-container" >Contact</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="/user_account" id="contect">account</a></li>
+                  </ul>
+          
+                  <ul class="burgger">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#footer-container" >Contact</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="/user_account" id="contect">account</a></li>
+                  </ul>
+                  <i id="menu-toggle" class="ri-menu-fold-line"></i>
+          
+    </header>
+    <div class="main">
+               <div class="left">
+                <div id="upbox">
+                    <div id="imgbox">
+                         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="">
+                     </div>
+        
+                     <h1><%=user.name%></h1>
+                    <%  for(var i =0;i< orders.length;i++){  %>
+                       <%  for(var j = 0;j < orders[i].seats.length;j++){ %>
+                             <h1>Seats Booked : <%= orders[i].seats[j] %></h1>
+                       <%  }  %>
+                    <%  }   %>
+               
+                    <!-- Email and Phone section -->
+                    <div id="contact-info">
+                        <p>Email: <%=user.email%></p>
+                        <p>Phone No. : <%=user.phone%></p>
+                    </div>
+                    
+                    <!-- Edit and Logout buttons -->
+                    <div id="buttons">
+                        <button class="button" id="editButton">Edit</button>
+                        <button class="button" id="logoutButton">Logout</button>
+                    </div>
+                    
+                </div>
+               </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+    <!-- <div id="midbox">
+        <div id="order">
+            <i class="ri-arrow-up-circle-fill"></i>
+            <h3> <a href="/myOrders" style="text-decoration:none; color:black;"> MY ORDER'S  </a></h3>
+            <i class="ri-skip-right-line"></i>
+        </div>
+        <div id="account">
+            <h3>ACCOUNT SETTINGS</h3>
+            <h4 class="a"> Profile Information </h4>
+
+            <div class="addnewproduct">
+              <h3>BE A SELLER</h3>
+              <a href="/addnewpro"> <h4> Add Your Products</h4></a>
+            </div>
+
+         
+            <h4 class="c"> PAN Card Information</h4>
+        </div>
+        <div id="payment">
+            <div id="rap"> 
+              <h3>PAYMENTS</h3>
+               <i class="ri-bank-card-fill"></i>
+            </div>
+            <h4 class="m">Gift Cards₹0</h4>
+            <h4 class="n">Saved UPI</h4>
+            <h4 class="o"> Saved Cards</h4>
+        </div>
+        <div id="others">
+            <h3>OTHERS</h3>
+            <h4 class="w"> My Coupons</h4>
+            <h4 class="x">My Reviews & Ratings</h4>
+            <h4 class="y"> All Notifications</h4>
+            <h4 class="z">  My Wishlist</h4>
+        </div>
+        
+    </div>
+    <div id="bottombox">
+        <i class="ri-logout-circle-line"></i>
+        <form action="/logout" method="POST">
+            <button class="logoutbtn"><h3>LOGOUT</h3></button>
+          </form>
+      
+        
+    </div> -->
+       </div>
+       <div class="right"></div>
+    </div>
+    
+</body>
+</html>

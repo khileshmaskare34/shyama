@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center; font-size: 4rem;"> : <%=  perticuler_launge.loungeName %> : </h1>
+
+<h1 style="text-align: center;">Here is all your booked seats: </h1>
+
+<% var left_seats=[] ; %> 
+
+<% for(var j=1;j<= perticuler_launge.noOfSeats; j++){ %>
+            
+  <%          left_seats.push(j) %>
+          
+    
+       
+
+        <% } %>
+
+<div style=" display: flex; flex-direction: row; flex-wrap: wrap; padding: 3%; justify-content: center;">
+    <% for(var i=0;i< orders.length; i++){ %>
+        
+        <% for(var j=0;j< orders[i].seats.length; j++){ %>
+        
+        
+      
+        <div style="display: flex; align-items: center; justify-content: center; border:2px solid black; border-radius: 2rem ; flex-wrap: wrap; padding: 2%; background-color: green; margin:0.1% ; ">
+            <h1 > <%= orders[i].seats[j]  %> </h1>
+        </div>
+           
+          <%  const inputString = orders[i].seats[j]; %>
+           <% const extractedNumber = parseInt(inputString.match(/\d+/)[0]); %>
+
+           
+
+            <%  const numberToRemove = extractedNumber; %>
+
+            <%   left_seats = left_seats.filter(number => number !== numberToRemove); %>
+            
+            
+
+
+            <% } %>
+           
+
+        <% } %>
+    </div>
+    <h1 style="text-align: center;">No Of Seats Left :  <%= left_seats.length  %> </h1>
+    <h1 style="text-align: center;">Here is all your 'NOT BOOKED' seats: </h1>
+
+    <div style=" display: flex; flex-direction: row; padding: 3%; justify-content: center; align-items: center ; flex-wrap: wrap;">
+        <% for(var i=0;i< left_seats.length; i++){ %>
+            
+           
+            
+            
+          
+            <div style="display: flex; align-items: center; justify-content: center; border:2px solid black; border-radius: 2rem ; padding: 2%; background-color: rgb(128, 36, 0); margin:0.1% ; ">
+                <h1 > A<%= left_seats[i]  %> </h1>
+
+
+
+            </div>
+               
+    
+             
+               
+    
+            <% } %>
+        </div>
+    
+    
+
+
+
+
+
+
+
+
+
+     <center>
+
+        
+        
+        <h1 style="font-family: Arial, Helvetica, sans-serif;"> Here is all your orders </h1> </center>
+        <div id="da">
+       <% for(var j = 0; j < orders.length; j++){ %>
+        
+                 <% let obj = users1.find(o => o._id == orders[j].userId);  %>
+        
+      
+                 <div style="border: 2px solid rgb(70, 64, 64); display: flex; flex-direction: column; margin-bottom:2%;">
+                     <h1 style="font-family: Arial, Helvetica, sans-serif;"> Order Id :  <%= orders[j]._id %> </h1>
+                     <h1 style="font-family: Arial, Helvetica, sans-serif;"> User Name :  <%= obj.name %> </h1>
+                      <h1 style="font-family: Arial, Helvetica, sans-serif;"> Seats booked :
+                        
+                        
+                        <% for(var k = 0 ; k< orders[j].seats.length; k++){ %>
+
+                         <%=  orders[j].seats[k] %>
+,
+                         <%}%>  </h1>
+      
+      
+                         <h1 style="font-family: Arial, Helvetica, sans-serif;"> User Email :  <%= obj.email %> </h1>
+
+
+                  <%  let futureDateUTC = orders[j].expireTime; %>
+       
+       
+                     <% let currentDateUTC = new Date(); %>
+                            
+       
+                     <% let timeDifferenceMs = futureDateUTC - currentDateUTC;%>
+       
+                     <% let hoursLeft = Math.floor(timeDifferenceMs / (1000 * 60 * 60));%>
+                     <% let minutesLeft = Math.floor((timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60));%>
+                 <%  const secondsLeft = Math.floor((timeDifferenceMs % (1000 * 60)) / 1000); %>
+                 <% console.log(`Hours left: ${hoursLeft}`);%>
+                     <% console.log(`Minutes left: ${minutesLeft}`);%>
+
+
+
+
+
+       <!-- <h1> time Left: <%= hoursLeft %> : <%= minutesLeft %> :  <%= secondsLeft %> </h1> -->
+         
+
+       <!-- <h1>Countdown Timer</h1> -->
+       <h1 style="font-family: Arial, Helvetica, sans-serif;">Time left: <span style="color: red;" class="timer<%= j %>"></span> </h1> 
+   
+       <% futureDateUtc = ''; currentDateUTC = ''; %>
+
+       <script>
+           function updateTimer() {
+               let futureDate = new Date('<%= futureDateUTC %>');
+               let now = new Date();
+               let timeDifferenceMs = futureDate - now;
+               
+               let hours = Math.floor(timeDifferenceMs / (1000 * 60 * 60));
+               let minutes = Math.floor((timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60));
+               let seconds = Math.floor((timeDifferenceMs % (1000 * 60)) / 1000);
+               
+               let timerElement = document.querySelector('.timer<%= j %>');
+               timerElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+           }
+   
+           setInterval(updateTimer, 1000);
+           updateTimer();
+       </script>
+
+
+
+
+    </div>
+       
+
+        <% } %>
+    </div>
+
+
+    <style>
+        #da{
+            height: 56vh;
+            width: 98vw;
+            background-color: rgb(144, 253, 216);
+
+
+        }
+
+        
+        </style>
+      
+        
+        
+        
+    
+
+</body>
+</html>
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Add global styles here */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .seat {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+            border-radius: 2rem;
+            padding: 2%;
+            margin: 0.1%;
+        }
+
+        .booked-seat {
+            background-color: green;
+        }
+
+        .not-booked-seat {
+            background-color: rgb(128, 36, 0);
+        }
+
+        .order-container {
+            border: 2px solid rgb(70, 64, 64);
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2%;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h1 style="font-size: 4rem;"> : <%= perticuler_launge.loungeName %> : </h1>
+        <h1>Here are all your booked seats:</h1>
+    </div>
+
+    <div class="flex-container">
+        <% for(var i = 0; i < orders.length; i++){ %>
+            <% for(var j = 0; j < orders[i].seats.length; j++){ %>
+                <div class="seat booked-seat">
+                    <h1><%= orders[i].seats[j] %></h1>
+                </div>
+                <% } %>
+        <% } %>
+    </div>
+
+    <div class="center">
+        <h1>No Of Seats Left: <%= left_seats.length %></h1>
+        <h1>Here are all your 'NOT BOOKED' seats:</h1>
+    </div>
+
+    <div class="flex-container">
+        <% for(var i = 0; i < left_seats.length; i++){ %>
+            <div class="seat not-booked-seat">
+                <h1>A<%= left_seats[i] %></h1>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="center">
+        <h1>Here are all your orders</h1>
+    </div>
+
+    <div id="da" class="flex-container">
+        <% for(var j = 0; j < orders.length; j++){ %>
+            <% let obj = users1.find(o => o._id == orders[j].userId); %>
+            <div class="order-container">
+                <h1>Order Id: <%= orders[j]._id %></h1>
+                <h1>User Name: <%= obj.name %></h1>
+                <h1>Seats booked: <%= orders[j].seats.join(', ') %></h1>
+                <h1>User Email: <%= obj.email %></h1>
+
+                <h1>Time left: <span class="timer<%= j %>"></span></h1>
+                <script>
+                    function updateTimer<%= j %>() {
+                        let futureDate = new Date('<%= orders[j].expireTime %>');
+                        let now = new Date();
+                        let timeDifferenceMs = futureDate - now;
+
+                        let hours = Math.floor(timeDifferenceMs / (1000 * 60 * 60));
+                        let minutes = Math.floor((timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60));
+                        let seconds = Math.floor((timeDifferenceMs % (1000 * 60)) / 1000);
+
+                        let timerElement = document.querySelector('.timer<%= j %>');
+                        timerElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                    }
+
+                    setInterval(updateTimer<%= j %>, 1000);
+                    updateTimer<%= j %>();
+                </script>
+            </div>
+        <% } %>
+    </div>
+
+    <style>
+        /* Additional styles for responsiveness */
+        #da {
+            width: 100%;
+        }
+
+        .order-container {
+            padding: 2%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .seat {
+                padding: 1%;
+            }
+
+            .order-container {
+                padding: 1%;
+            }
+        }
+    </style>
+</body>
+</html>
+
+
+ -->

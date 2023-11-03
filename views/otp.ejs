@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets//otp.css">
+</head>
+<body>
+   
+    <form action="/otp" class="otp-form" name="otp-form" method="post">
+        <div class="title">
+            <h3>OTP VERIFICATION</h3>
+            <p class="info">An OTP has been sent to <%= userEmail %></p>
+            <p class="msg">Please enter OTP to verify</p>
+        </div>
+        <div class="otp-input-fields">
+            <input type="number" class="otp__digit otp__field__1" placeholder="enter otp" name="otpNumber">
+        </div>
+        <div class="result">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

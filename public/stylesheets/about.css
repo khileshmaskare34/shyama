@@ -1,0 +1,126 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans",sans-serif;
+  box-sizing: border-box;
+}
+
+body{
+width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f1f1;
+  /* display: none; */
+
+
+}
+
+.about-section1{
+  /* background: url(https://erail.in/blog/Images/Post/railway-coach-class_10.jpg) no-repeat left; */
+  background: url('/images/WhatsApp Image 2023-07-17 at 14.41.10.jpg') no-repeat left;
+  background-size: 50%;
+  display: none;
+height: 100vh;
+  background-color: #fdfdfd;
+  /* background-color:#ddcbcbaf; */
+  overflow: hidden;
+ 
+
+  padding: 100px 0;
+  
+}
+
+#about1> h1{
+  margin-left: 1000px;
+  font-size: 50px;
+  
+    }
+
+.inner-container1{
+  width: 50%;
+  float: right;
+  
+ 
+  background-color: #fdfdfdb9;
+  /* background-color:#ddcbcb74; */
+  /* background-color: #545454; */
+
+  padding: 180px;
+  
+  
+}
+
+.inner-container1 h1{
+  margin-top: -7vh;
+ 
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.text1{
+  font-size: 21px;
+  color: #545454;
+  line-height: 30px;
+  text-align: justify;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.skills1{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 11px;
+}
+/* .about-section{
+  display: none;
+} */
+@media screen and (max-width:1200px){
+
+  
+  .inner-container1{
+      padding: 80px;
+      
+  }
+  .about-section1{
+    display: flex;
+  }
+  .text1{
+    color: #545454;
+
+  }
+}
+
+@media screen and (max-width:1000px){
+  .about-section1{
+      background-size: 100%;
+      padding: 100px 40px;
+      height: auto;
+  }
+  .about-section1{
+    display: flex;
+  }
+  .inner-container1{
+      width: 100%;
+      margin-bottom: 30px;
+      margin-top: 0;
+      display: flex;
+  }
+}
+
+@media screen and (max-width:600px){
+  .about-section1{
+      padding: 0;
+      display: flex;
+  }
+
+  
+  .inner-container1{
+      padding: 60px;
+      margin-bottom: 30px;
+      margin-top: 0;
+      display: flex;
+  }
+}
