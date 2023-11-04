@@ -17,6 +17,7 @@ body {
 }
 
 .swiper {
+  position: relative;
   width: 100%;
   height: 74.2vh;
 }

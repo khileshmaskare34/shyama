@@ -2,15 +2,17 @@
 #services{
   /* height: 100vh; */
   background-color: rgb(241, 246, 246);
-  /* background-color: #f6eeee65; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
 #services>h1{
   text-align: center;
   padding: 1vw 1vw;
-  font-size: 5vw;
-  color: rgba(100, 80, 80, 0.655);
+  font-size: 40px;
+  color: black;
   border-bottom: 1px solid black;
   background-color: #5c575705;
   transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
@@ -19,63 +21,40 @@
   cursor: pointer;
   color: rgba(0, 0, 0, 0.74);
 }
-.cantainer{
-  /* width: 100vw; */
-  /* height: 95vh; */
-  /* background-color: cornflowerblue; */
-}
-.cantainer .service{
+.cantainer {
+  /* border: 2px solid black; */
   display: flex;
-  padding: 2vh 2vw;
-  /* width: 100vw; */
-  /* height: 50vh; */
-  /* background-color: red; */
-}
-.service .facilities{
-  display: flex;
+  gap: 4vw;
   justify-content: center;
   align-items: center;
-  width: 50vw;
+  flex-wrap: wrap; /* Initially set to wrap on all screens */
+  padding: 3vh 4vw;
+}
+
+.cantainer .cart {
+  width: 30vw;
+  height: 60vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  /* border: 1px solid black; */
+}
+
+.cart img {
+  width: 100%;
   height: 45vh;
-}
-.facilities>img{
-  width: 40%;
-  height: 70%;
-  margin-bottom: 10vh;
+  background-size: cover;
 }
 
-.service .facilities-p{
-  display: flex;
+.cart h3 {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(15, 14, 14);
+}
+
+#services .btn{
+  display: inline-block;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  width: 50vw;
-  /* height: 45vh; */
-  padding: 0.3vw;
-  /* background-color: rgba(0, 0, 0, 0.47); */
-
-
-}
-.facilities-p>ul{
-  display: flex;
-  flex-direction: column;
-  gap: 6vh;
-  padding-left: .5vw;
-  margin-bottom: 3vh;
-}
-
-.facilities-p>ul>li{
- 
- font-size: 3vw;
- color: #050404b9;
- letter-spacing: 1px;
- box-shadow: 0px 1px 1px rgb(21, 18, 18);
- 
-
-
-}
-.btn{
-  display: inline-block;
   padding: 1vh 2vw;
   background-color: #13b783;
   color: #ffffff;
@@ -83,66 +62,20 @@
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
+  margin-bottom: 30px;
 }
 .btn:hover{
   background-color: #068932;
   scale: 1.1;
 }
 
-@media only screen and (max-width: 600px){
-  
-  .service{
-      display: flex;
-      flex-direction: column;
+@media (max-width: 768px) {
+  .cantainer {
+    flex-wrap: nowrap; /* Change flex-wrap to nowrap to stack items vertically */
+    flex-direction: column;
   }
-  #services>h1{
-    text-align: center;
-    padding: 4vw 2vw;
-    font-size: 6vw;
-    font-weight: 600;
-    background-color: #6f656544;
-  }
-  .service .facilities{
-    background-size: cover;
-      width: 100vw;
-      height: 45vh;
-  }
-  .facilities>img{
-      width: 85%;
-      height: 90%;
-      
-        margin-bottom: 1vh;
-      
-  }
-  .service .facilities-p{
-      width: 100vw;
-      height: 45vh;
-  }
-  .facilities-p>ul>li{
-      font-size: 5vw;
-      line-height: 3.5vh;
-  }
-  .btn{
-      margin-top: 1.5vh;
-  }
-}
-/* CSS for iPad */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .facilities>img {
-    width: 70%;
-    height: 70%;
-  }
-
-  .facilities-p>ul>li {
-    font-size: 2.5vw;
-    line-height: 2.5vw;
-  }
-  .btn{
-    display: inline-block;
-    padding: 1vh 2vw;
-    background-color: #d53c3c;
-    color: #ffffff;
-    text-decoration: none;
-    margin-top: 3vw;
+  .cantainer .cart {
+    width: 100%; /* Make cart elements take the full width of the container */
+    height: auto; /* Allow height to adjust based on content */
   }
 }

@@ -1,0 +1,12 @@
+after service page
+      ----grow your bussiness with us
+      ----be our partner
+
+
+
+
+
+ <%- include ('footer/nav.ejs')-%>
+    <%- include ('function.ejs') -%>
+    <%- include ('about1.ejs') -%>
+    <%- include ('service.ejs') -%>
