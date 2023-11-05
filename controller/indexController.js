@@ -141,7 +141,7 @@ exports.choice_filling = async(req, res)=>{
   
     myDate = UTC_futureDate ;
     let lounges = await loungeSchema.find({stationLocation: stationName})
-    // console.log(lounges)
+    console.log("khilesh" + lounges)
   
     res.render("chooseLaunge", {lounges})
 }

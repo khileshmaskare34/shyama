@@ -15,6 +15,20 @@ const {lounge_provider_login,
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
+const multer = require('multer')
+const path=require('path');
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, path.join(__dirname, './../public/upload'));
+    },
+    filename: (req, file, cb) => {
+      const name = Date.now() + '-' + file.originalname;
+      cb(null, name);
+    },
+  });
+  var upload = multer({ storage: storage });
+
 
 router.get('/loungeProviderLogin', (req, res, next)=>{
     res.render('loungeProvider_login');
@@ -29,7 +43,7 @@ router.post('/loungeProviderRegister', lounge_provider_register)
 router.get('/lounge_provider_admin', lounge_provider_admin)
 router.get('/loungeRegistration',get_lounge_registration )
 
-router.post('/loungeRegistration', lounge_registration)
+router.post('/loungeRegistration',upload.single("loungeImage"), lounge_registration)
 
 router.post('/edit_lounge', edit_lounge)
 

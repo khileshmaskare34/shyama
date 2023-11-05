@@ -15,6 +15,9 @@ var loungeSchema = mongoose.Schema({
         type : String,
         required: true
     },
+    loungeImage:{
+        type : String
+    },
     noOfSeats:{
         type:Number
     },

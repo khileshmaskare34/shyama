@@ -10,3 +10,6 @@ after service page
     <%- include ('function.ejs') -%>
     <%- include ('about1.ejs') -%>
     <%- include ('service.ejs') -%>
+
+
+    #form_add

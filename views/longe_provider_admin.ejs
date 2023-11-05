@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lounge Management</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,7 +58,7 @@
        
 
         h1 {
-            font-size: 28px;
+            font-size: 48px;
             color: #333;
             margin-bottom: 20px;
         }
@@ -70,75 +76,50 @@
             
             margin: 10px 0;
         }
-
-        /* Lounge Form Styling */
-        #registration-form {
-            text-align: center;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .form-group {
-            margin-bottom: 17px;
-            width: 40vw;
-           margin-left: 27%;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-top: 5%;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
         input {
+            margin-top: 10px;
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            /* border-radius: 5px; */
             font-size: 14px;
         }
 
-        button {
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
+        .owner_name{
+            display: flex;
+            gap: 5px;
+        }
+        .owner_name a{
+            text-decoration: none;
+        }
+        
+        .small_btn{
+	       margin-top: 20px;
         }
 
-        button:hover {
-            background-color: #2980b9;
+        .check_seat{
+            padding: 2px 7px;
+            font-size: 10px;
         }
 
      
-  #ff{
-    margin-top:13%;
-  }
+
         .lounge-card:hover {
             transform: translateY(-5px);
         }
 
         .lounge-card h1 {
+            text-decoration: none;
             font-size: 20px;
             color: #333;
             margin: 10px 0;
         }
-    #gg{
-        margin-top: 12%;
-    }
-
+        .lounge-card h1 a{
+            text-decoration: none;
+            color: black;
+            font-size: 25px;
+        }
+  
         /* Add New Lounge Form Styling */
         #add-lounge-form {
             display: none;
@@ -150,66 +131,69 @@
     </style>
 </head>
 <body>
+    <header class="header">
+        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <!-- <nav class="navbar"> -->
+          <ul class="main-nav">
+            <li><a href="/lounge/loungeProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+    
+          <ul class="burgger">
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+          <i id="menu-toggle" class="ri-menu-fold-line"></i>
+    
+    </header>
     <div id="main">
+
         <h1>Welcome,<span class="username"><%= LoungeUser.name %></span> </h1>
+
+        <button><a href="/lounge/loungeRegistration">Add New Lounge</a></button>
+
         <!-- <h2>Your Registered Lounges</h2> -->
     <div class="lounge-box .container " >
         <% for (var i = 0; i < his_launges.length; i++) { %>
         <div class="lounge-card .card-img-bottom  bg-gradient h-25 w-100">
-            <h1><a href="/lounge/laungeadminforaddingitems/<%= his_launges[i]._id %>"><%= his_launges[i].loungeName %></a></h1>
+
+            <div class="owner_name">
+                <h1><%= his_launges[i].loungeName %></h1>
+                <a class="check_seat" href="/lounge/laungeadminforaddingitems/<%= his_launges[i]._id %>">Check Seats ☑️</a>
+            </div>
+
             <p>Owner: <%= LoungeUser.name %></p>
             <p>No. of Seats: <%= his_launges[i].noOfSeats %></p>
             
             <form id="gg" action="/lounge/edit_lounge" method="POST">
-                <input type="text" name="loungeId_for_delete" value="<%= his_launges[i]._id %>" style="visibility: hidden; display: none; ">
-                <input type="text" name="loungeName" placeholder="<%= his_launges[i].loungeName %>" >
-                <input type="text" name="loungePhoneNo" placeholder="<%= his_launges[i].loungePhoneNo%>" >
-                <input type="text" name="loungeEmail" placeholder="<%= his_launges[i].loungeEmail %>" >
-                <input type="text" name="noOfSeats" placeholder="<%= his_launges[i].noOfSeats%>" >
-                <button id="ff" type="submit" class="btn btn-outline-primary mb-12 ">Edit Lounge Information</button>
+
+                <input type="text" name="loungeId_for_delete" value="<%= his_launges[i]._id %>"  style="visibility: hidden; display: none; ">
+
+                <input type="text" name="loungeName" 
+                placeholder="lounge name" value="<%= his_launges[i].loungeName %>" >
+
+                <input type="text" name="loungePhoneNo" 
+               placeholder="lounge phone number" value="<%= his_launges[i].loungePhoneNo%>" >
+
+                <input type="text" name="loungeEmail" placeholder="lounge email" value="<%= his_launges[i].loungeEmail %>" >
+
+                <input type="text" name="noOfSeats" placeholder="no of seats" value="<%= his_launges[i].noOfSeats%>" >
+
+                <button class="small_btn" type="submit">Edit Lounge Infom</button>
             </form>
+
             <form action="/lounge/delete_lounge" method="POST">
                 <input type="text" name="loungeId_for_delete" value="<%= his_launges[i]._id %>" style="visibility: hidden; display: none; ">
-                <button   id="dd" class="btn btn-danger mt-2"  type="submit">Delete Lounge</button>
+                <button class="small_btn" type="submit">Delete Lounge</button>
             </form>
         </div>
         <% } %>
     </div>
-        <!-- <h2 class="">Add New Lounge</h2> -->
-        <button id="toggle-add-form" class="btn btn-outline-danger"><a href="#form_add" class="btn p-md-0">Add New Lounge</a></button>
-        <form id="add-lounge-form" action="/lounge/loungeRegistration" method="post">
-            <div class="form-group " id="form_add">
-                <label for="name">Lounge Name</label>
-                <input type="text" id="name" name="loungeName" placeholder="loungeName" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Lounge Email</label>
-                <input type="email" id="email" name="loungeEmail" placeholder="loungeEmail" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Lounge Phone Number</label>
-                <input type="tel" id="phone" name="loungePhoneNo" placeholder="loungePhoneNo">
-            </div>
-            <div class="form-group">
-                <label for="seats">Lounge No. of Seats</label>
-                <input type="text" id="seats" name="noOfSeats" placeholder="noOfSeats">
-            </div>
-            <div class="form-group">
-                <label for="station">Station Name</label>
-                <input type="text" id="station" name="stationLocation" placeholder="stationLocation">
-            </div>
-            <input type="text" name="loungeProviderId" value="<%= loungeProvider._id%>" style="visibility: hidden;">
-            <button type="submit">Register</button>
-        </form>
+        
     </div>
+   <%- include('footer/footer.ejs') -%>
     
-    <script>
-        const toggleAddFormButton = document.getElementById('toggle-add-form');
-        const addLoungeForm = document.getElementById('add-lounge-form');
-
-        toggleAddFormButton.addEventListener('click', () => {
-            addLoungeForm.style.display = addLoungeForm.style.display === 'none' ? 'block' : 'none';
-        });
-    </script>
+    <script src="\javascripts\nav.js"></script>
 </body>
 </html>

@@ -36,30 +36,10 @@
     
     
    
-    <div class="functions">
-      <form action="/choiceFilling" method="post">
-       <label for="station">Choose Station:</label>
-   
-       <select id="station" name="stationName">
-         <% for(var i=0;i< station.length; i++){ %>
-         <option value="<%= station[i] %>" name="<%= station[i] %>" ><%= station[i] %></option>
-         <% } %>
-       </select>
-   
-       <label for="check-in-time">Check-in Time:</label>
-       <input type="datetime-local" id="check-in-time" name="checkIn">
-   
-       <label for="check-out-time"> Check-out Time:</label>
-       <input type="number" name="hours" id="check-out-time" placeholder="hours">
-     
-   
-         <button id="search-btn" type="submit">Search</button>
-      </form>
-    </div>
-
-    <%- include ('slider.ejs') -%>
+    <%- include ('function.ejs') -%>
     <%- include ('about1.ejs') -%>
     <%- include ('service.ejs') -%>
+    <%- include ('work_withus.ejs') -%>
     <%- include ('footer/footer.ejs') -%>
     
 

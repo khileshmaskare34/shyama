@@ -70,19 +70,26 @@ exports.lounge_provider_register = async (req, res, next) => {
 
 
 exports.lounge_registration = async (req, res, next) => {
+    // console.log( "khilesh"+ req.file.loungeImage);
     try {
         var email = req.cookies.loungeProvider_email;
+        if (!req.file) {
+            return res.status(400).send('No file uploaded');
+        }
+        const imageFilename = req.file.filename;
 
         var newLounge = new loungeSchema({
             loungeName: req.body.loungeName,
             loungeEmail: req.body.loungeEmail,
             loungePhoneNo: req.body.loungePhoneNo,
             noOfSeats: req.body.noOfSeats,
+            loungeImage: imageFilename,
             stationLocation: req.body.stationLocation,
             loungeProviderId: req.body.loungeProviderId
         });
 
         await newLounge.save();
+        // console.log("luck" + newLounge)
 
         res.redirect("/lounge/lounge_provider_admin");
     } catch (error) {

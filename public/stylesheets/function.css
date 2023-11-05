@@ -26,16 +26,25 @@ body {
 
 }
 .main_img .box{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 20vw;
-  height: 30vh;
+  padding: 2vh 1vw;
+  width: 18vw;
+  /* height: 30vh; */
   box-shadow: 0 7px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #ffffffa9;
   border-bottom-right-radius: 30px;
   border-top-left-radius: 30px;
+}
+.box img{
+  margin-top: 1vh;
+  width: 100%;
+  height: 20vh;
+}
+.box h1{
+  text-align: center;
+}
+.box h2{
+  text-align: center;
+  margin-top: 5vh;
 }
 .box span{
   color: #13b783;
