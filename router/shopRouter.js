@@ -35,15 +35,15 @@ var storage = multer.diskStorage({
 
 
   
-router.get('/shopProvider_login', (req, res, next)=>{
+router.get('/shopProviderLogin', (req, res, next)=>{
 res.render('shopProvider_login',{ error: ''});
 })
-router.post('/shopProvider_login', shop_provider_login)
+router.post('/shopProviderLogin', shop_provider_login)
 
-router.get('/shopProvider_register', (req, res, next)=>{
+router.get('/shopProviderRegister', (req, res, next)=>{
 res.render('shopProvider_register');
 })
-router.post('/shopProvider_register', shop_provider_register)
+router.post('/shopProviderRegister', shop_provider_register)
 
 router.get('/foodSelection', food_selection)
 

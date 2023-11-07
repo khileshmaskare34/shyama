@@ -2,91 +2,71 @@
 <html>
 <head>
   <title>LoungeSchema</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    .container {
-      max-width: 400px;
-      margin: 20px auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+  <link rel="stylesheet" href="/stylesheets/registerProvider.css">
+  <link rel="stylesheet" href="/stylesheets/nav.css">
+  <link rel="stylesheet" href="/stylesheets/footer.css">
 
-    h2 {
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="tel"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .google-btn {
-      background-color: #DB4437;
-    }
-  </style>
 </head>
 <body>
+  <header class="header">
+    <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+    <!-- <nav class="navbar"> -->
+      <ul class="main-nav">
+        <li><a href="/shop/shopProvider_login"><i class="ri-arrow-left-fill"></i></a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="#footer-container" >Contact</a></li>
+      </ul>
 
-  <div class="container">
-    <h2>Shop Registration</h2>
+      <ul class="burgger">
+        <li><a href="/">Home</a></li>
+        <li><a href="#footer-container" >Contact</a></li>
+      </ul>
+      <i id="menu-toggle" class="ri-menu-fold-line"></i>
 
-    <form id="registration-form" action="/shopRegistration" method="post">
+  </header>
 
-      <div class="form-group">
-        <label for="name">Shop Name</label>
-        <input type="text" id="name" name="shopName" placeholder="ShopName" required>
-      </div>
+  <div class="main-container">
+    <div class="image-container">
+      <img src="/images/shop_img.jpg" alt="Lounge Provider Image">
 
-      <div class="form-group">
-        <label for="email">Shop Email</label>
-        <input type="email" id="email" name="shopEmail" placeholder="ShopEmail" required>
-      </div>
+    </div>
+    <div class="form-container container">
+      <h2>Shop Registration</h2>
 
-      <div class="form-group">
-        <label for="phone">Shop Phone Number</label>
-        <input type="tel" id="phone" name="shopPhoneNo" placeholder="ShopPhoneNo" >
-      </div>
-      <div class="form-group">
-        <label for="station">Station Name </label>
-        <input type="text" id="station" name="station" placeholder="StationName" >
-      </div>
-      <input type="text" name="shopProviderId" value="<%= shopProvider._id%>" style="visibility: hidden;">
+      <form class="registration-form" action="/shop/shopRegistration" method="post">
 
-      <button type="submit">Register</button>
-    </form>
+        <div class="form-group d-flex flex-column">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="shopName" placeholder="Shop Name" required>
+        </div>
+
+        <div class="form-group d-flex flex-column">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="shopEmail" placeholder="Shop Email" required>
+        </div>
+
+        <div class="form-group d-flex flex-column">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="shopPhoneNo" placeholder="Shop Phone No" >
+        </div>
+        <div class="form-group d-flex flex-column">
+          <label for="station">Station Name </label>
+          <input type="text" id="station" name="station" placeholder="select registerd Station Name" >
+        </div>
+
+        <input type="text" name="shopProviderId" value="<%= shopUser._id%>" style="visibility: hidden;">
+
+        <h3>Fill all details correctly ☑️, and register your shop 😊</h3>
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
   </div>
+
+  <%- include('footer/footer.ejs') -%>
+  <script src="\javascripts\nav.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@ const shop_items = require('../models/shops/shopItem')
 const loungeSchema = require('../models/lounges/loungeSchema');
 const users = require('../models/users/users')
 const orderItem = require('../models/shops/orderdFood')
+const jwt = require('jsonwebtoken');
 
 exports.shop_provider_login = async (req, res, next) => {
     try {
@@ -38,7 +39,7 @@ exports.shop_provider_login = async (req, res, next) => {
             res.cookie('Token', token, { httpOnly: true, maxAge: 1.728e8 });
             res.cookie('shopProvider_email', shopUser.shopEmail, { httpOnly: true, maxAge: 1.728e8 });
 
-            res.redirect("/shop_procider_admin");
+            res.redirect("/shop/shop_provider_admin");
         }
     } catch (error) {
         console.error("An error occurred:", error);
@@ -59,7 +60,7 @@ exports.shop_provider_register = async (req, res, next) => {
         
         if (savedShopProvider) {
             res.cookie('shopProvider_email', req.body.shopEmail);
-            res.redirect('/shop/shop_provider_admin');
+            res.redirect('/shop/shopRegistration');
         } else {
             console.log("Failed to save shop provider");
             res.status(500).send("Failed to save shop provider");
@@ -173,13 +174,13 @@ exports.get_shop_reg = async (req, res) => {
     try {
         var email = req.cookies.shopProvider_email;
         var shopProvider = await shopProviderSchema.findOne({ email: email });
-
+        const shopUser = await shopProviderSchema.findOne({ shopEmail: req.cookies.shopProvider_email });
         if (!shopProvider) {
             console.log("Shop provider not found");
             return res.status(404).send("Shop provider not found");
         }
 
-        res.render('shopRegistration', { shopProvider });
+        res.render('shopRegistration', { shopProvider, shopUser });
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
