@@ -1,65 +1,36 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-<h1> your items are </h1>
-<% for(var i=0;i< items.length; i++){ %>
-
-    <div style=" border: 2px solid black;">
-  <h1>Item Name :  <%= items[i].item_Name  %> </h1>
-  <h1>Item price :  <%= items[i].price %> </h1>
-  <h1>Item description :  <%= items[i].description %> </h1>
-  <img width="100" height="100" src="/upload/<%= items[i].Image %>" alt="">
-  
-
-
-  <form action="/delete_item" method="post">
-    <input type="text" name="itemId_for_delete" value="<%= items[i]._id %>" style="visibility: hidden; display: none;">
-<button type="submit"> Delete Item From your shop </button>
-</form>
-
-
-<form action="/edit_item" method="post" enctype="multipart/form-data">
-    <input type="text" name="itemId_for_delete" value="<%= items[i]._id %>" style="visibility: hidden;">
-
-    <input type="text" name="item_Name" placeholder="<%= items[i].item_Name%>">
-    <input type="text" name="description" placeholder="<%= items[i].description %>">
-    <input type="file" name="Image" placeholder="<%= items[i].Image %>">
-    <input type="text" name="price" placeholder="<%= items[i].price %>">
-    <input type="text" name="shop_id" value="<%= items[i].shop_id %>" style="visibility: hidden; display: none;">
-
-    <button type="submit"> edit item </button>
-</form>
-
-</div>
-
-
-    <% } %>
-
-   <a href="/add_items/<%= perticuler_shop._id %>"><button>add more items </button></a> 
-
-</body>
-</html>  -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Items</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/admin.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
 
     
 </head>
 <body>
+    <header class="header">
+        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <!-- <nav class="navbar"> -->
+          <ul class="main-nav">
+            <li><a href="/shop/shop_provider_admin"><i class="ri-arrow-left-fill"></i></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+    
+          <ul class="burgger">
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+          <i id="menu-toggle" class="ri-menu-fold-line"></i>
+    
+        </header>
     <div id="admin">
      <h1>Your Items</h1>
      <a href="/shop/add_items/<%= perticuler_shop._id %>"><button>Add More Items</button></a>
@@ -70,19 +41,17 @@
                 <h2>Name : <%= items[i].item_Name %></h2>
                 <p>Price: <%= items[i].price %></p>
                 <p>Description : <%= items[i].description %></p>
-                <img src="/upload/<%= items[i].Image %>" alt="Item Image">
+                <img src="/upload/<%= items[i].Image %>"     alt="Item Image">
                 
                 <div class="item-actions">
-                    <button class="action-button" onclick="toggleEditForm('<%= items[i]._id %>')">Edit Item</button>
+                    <button class="small_btn" onclick="toggleEditForm('<%= items[i]._id %>')">Edit Item</button>
                 </div>  
         
                 <form action="/shop/delete_item" method="post">
                     <input type="text" name="itemId_for_delete" value="<%= items[i]._id %>" style="visibility: hidden; display: none;">
-                <button type="submit" id="ll"> Delete Item shop </button>
+                <button class="small_btn delete" type="submit"> Delete Item</button>
                 </form>
-        
-        
-                <!-- Edit Form for each item -->
+
                 <form id="edit-form-<%= items[i]._id %>" class="edit-form" action="/shop/edit_item" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="itemId_for_delete" value="<%= items[i]._id %>">
                     <input type="text" name="item_Name" placeholder="<%= items[i].item_Name %>">
@@ -90,20 +59,22 @@
                     <input type="file" name="Image" placeholder="<%= items[i].Image %>">
                     <input type="text" name="price" placeholder="<%= items[i].price %>">
                     <input type="hidden" name="shop_id" value="<%= items[i].shop_id %>">
-                    <button class="action-button" type="submit">Save Changes</button>
+                    <button class="small_btn" type="submit">Save Changes</button>
                 </form>
+
             </div>
         <% } %>
      </div>
     </div>
 
-<script>
+    <script>
     // JavaScript to toggle the visibility of edit forms
     function toggleEditForm(itemId) {
         var editForm = document.getElementById("edit-form-" + itemId);
         editForm.style.display = editForm.style.display === "none" ? "block" : "none";
     }
-</script>
-
+    </script>
+    <%- include('footer/footer.ejs') -%>
+    <script src="\javascripts\nav.js"></script>
 </body>
 </html>
