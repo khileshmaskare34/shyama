@@ -71,6 +71,23 @@ exports.shop_provider_register = async (req, res, next) => {
     }
 }
 
+exports.shop_provider_signout = async (req, res, next) =>{
+    const token = req.cookies.Token
+    jwt.verify(
+     token,
+      'mynameispulkitupadhyayfromharda',
+      (err, authData) => {
+        if (err) {
+          res.sendStatus(403);
+        } else {
+          res.clearCookie('Token');
+          res.clearCookie('shopProvider_email');
+          res.redirect('/');
+        }
+      }
+    );
+}
+
 exports.get_shop_provider_admin = async (req, res, next) => {
     try {
         const shopUser = await shopProviderSchema.findOne({ shopEmail: req.cookies.shopProvider_email });

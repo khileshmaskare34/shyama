@@ -9,24 +9,24 @@
 </head>
 <body>
 
-    <div id="main">
+      <div id="main">
         <h1>Registered Lounges in Station</h1>
         <ul class="lounge-list">
-     <% for(var i = 0; i < lounges.length; i++){ %>
+        <% for(var i = 0; i < lounges.length; i++){ %>
 
-            <li class="lounge-item">
+         <li class="lounge-item">
                
                 <div class="lounge-details">
-                    <img src="/upload/  <%= lounges[i].loungeImage%>" alt="">
+                    <img src="/upload/<%= lounges[i].loungeImage %>" alt="Loading">
                     <h1><%= lounges[i].loungeName %></h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <p class="seats">Number of seats in lounge - <%= lounges[i].noOfSeats %></p>
                     <a href="/chooseLaunge/<%= lounges[i]._id %>">Book Now</a>
                 </div>
-            </li>
-    <% } %> 
+         </li>
+        <% } %> 
         </ul>
-    </div>
+      </div>
     
 </body>
 </html> 

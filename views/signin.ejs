@@ -42,6 +42,9 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Enter user password" name="password" required/>
                 </div>
+                <div id="error-message" class="error-message">
+                    <h3 style="color: red;"> <%= error %> </h3> <!-- Display the error message here -->
+                 </div>
                 <a href="/forgot">forgot password</a>
                 <button type="submit">Login</button>
                 <button class="google-btn">Login with Google</button>

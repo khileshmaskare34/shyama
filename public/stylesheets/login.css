@@ -51,7 +51,11 @@ body, h3, p, label {
 }
 
 .login-form {
-  text-align: center;
+  /* text-align: center; */
+}
+.error{
+  margin-bottom: 5px;
+  color: red;
 }
 
 .login-form div {

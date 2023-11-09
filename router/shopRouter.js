@@ -15,7 +15,8 @@ const {shop_provider_login,
        delete_item,
        add_items,
        particuler_item,
-       add_items_id} = require('../controller/shopController')
+       add_items_id,
+       shop_provider_signout} = require('../controller/shopController')
 const router = express.Router();
 
 const multer = require('multer')
@@ -33,10 +34,12 @@ var storage = multer.diskStorage({
   var upload = multer({ storage: storage });
 
 
-
+router.get('/', (req, res, next)=>{
+  res.render('index');
+})
   
 router.get('/shopProviderLogin', (req, res, next)=>{
-res.render('shopProvider_login',{ error: ''});
+res.render('shopProvider_login',{ error: ' '});
 })
 router.post('/shopProviderLogin', shop_provider_login)
 
@@ -44,6 +47,8 @@ router.get('/shopProviderRegister', (req, res, next)=>{
 res.render('shopProvider_register');
 })
 router.post('/shopProviderRegister', shop_provider_register)
+
+router.post('/logout-shop', shop_provider_signout)
 
 router.get('/foodSelection', food_selection)
 

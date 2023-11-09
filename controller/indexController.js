@@ -48,7 +48,7 @@ exports.user_signin = async function (req, res, next) {
         if (!User || !(pass === User.password)) {
             // Incorrect password or user not found
             console.log("Login failed: Incorrect email or password");
-            return res.status(401).render('login', { error: 'Incorrect email or password !' });
+            return res.status(401).render('signin', { error: 'Incorrect email or password !' });
         } else {
             const token = jwt.sign(
                 { id: User._id },
@@ -108,6 +108,23 @@ exports.user_signup = async (req, res, next) => {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
     }
+}
+
+exports.user_signout = async (req, res, next) =>{
+        const token = req.cookies.Token
+        jwt.verify(
+         token,
+          'mynameispulkitupadhyayfromharda',
+          (err, authData) => {
+            if (err) {
+              res.sendStatus(403);
+            } else {
+              res.clearCookie('Token');
+              res.clearCookie('user_email');
+              res.redirect('/');
+            }
+          }
+        );
 }
 
 exports.user_account = async function (req, res, next) {

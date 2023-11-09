@@ -38,6 +38,7 @@ body {
   margin-top: 1vh;
   width: 100%;
   height: 20vh;
+  border-radius: 50%;
 }
 .box h1{
   text-align: center;
@@ -46,11 +47,6 @@ body {
   text-align: center;
   margin-top: 5vh;
 }
-.box span{
-  color: #13b783;
-
-}
-
 
 .choice{
   padding: 2vh 1vw;

@@ -2,11 +2,8 @@ const express = require("express");
 const loungeSchema = require('../models/lounges/loungeSchema');
 const loungeProviderSchema = require("../models/lounges/loungeProviderSchema");
 const orderdLounge = require("../models/lounges/orderdLounge");
-
 const shopRegistration = require('../models/shops/shopSchema');
-
 const shop_items = require('../models/shops/shopItem')
-
 const users = require('../models/users/users');
 const jwt = require('jsonwebtoken');
 
@@ -65,6 +62,23 @@ exports.lounge_provider_register = async (req, res, next) => {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
     }
+}
+
+exports.lounge_provider_signout = async (req, res, next) =>{
+    const token = req.cookies.Token
+    jwt.verify(
+     token,
+      'mynameispulkitupadhyayfromharda',
+      (err, authData) => {
+        if (err) {
+          res.sendStatus(403);
+        } else {
+          res.clearCookie('Token');
+          res.clearCookie('loungeProvider_email');
+          res.redirect('/');
+        }
+      }
+    );
 }
 
 

@@ -98,3 +98,6 @@ h3{
     gap: 5px;
     flex-wrap: wrap;
 }
+span{
+    color: red;
+}

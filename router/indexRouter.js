@@ -14,7 +14,8 @@ const { user_signin,
      choose_lounge_id,
      get_choose_lounge, 
      particuler_item,
-     after_loungeBook_loggedInIndex} = require('../controller/indexController')
+     after_loungeBook_loggedInIndex,
+     user_signout} = require('../controller/indexController')
 
 const router = express.Router();
 const jwt = require('jsonwebtoken');
@@ -36,7 +37,7 @@ schedule.scheduleJob('1 */1 * * *', () => {
     }
    }
     deleted(); 
-   });
+});
 
 //    payment gateway
 const Razorpay = require('razorpay');
@@ -56,7 +57,7 @@ router.get('/get-started', (req, res, next)=>{
 })
 
 router.get('/user_signin', (req, res, next)=>{
-     res.render('signin')
+     res.render('signin', { error: '' })
 })
 router.post('/user_signin', user_signin)
 
@@ -65,6 +66,7 @@ router.get('/user_signup', (req, res, next)=>{
 })
 router.post('/user_signup',  user_signup);
 
+router.post('/logout',user_signout)
 
 router.get('/provider', (req, res, next)=>{
      res.render('provider');
@@ -243,7 +245,7 @@ router.post('/reset', async (req, res) => {
     // Delete the OTP data (since it's no longer needed)
     // await otpData.remove();
 
-    res.redirect('/signin');
+    res.redirect('/user_signin');
     
   } catch (error) {
     console.error(error);
@@ -253,6 +255,7 @@ router.post('/reset', async (req, res) => {
     });
   }
 });
+
 
 module.exports = router;
 

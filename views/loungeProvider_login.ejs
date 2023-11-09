@@ -173,6 +173,9 @@ hr {
                     <label for="password"  class="p-1">Password</label>
                     <input type="password" id="password" class="p-1" name="password" placeholder="Lounge Provider Password" required>
                 </div>
+                <div id="error-message" class="error-message">
+                    <h3 style="color: red;"> <%= error %> </h3> <!-- Display the error message here -->
+                 </div>
                 <a href="/">forgot Password</a>
                 <button type="submit">Login</button>
                 <button class="google-btn">Login with Google</button>

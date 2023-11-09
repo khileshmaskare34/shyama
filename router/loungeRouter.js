@@ -10,6 +10,7 @@ const {lounge_provider_login,
     add_lounges,
     after_loungeBook_loggedInIndex,
     get_lounge_registration,
+    lounge_provider_signout,
     
     } = require('../controller/loungeController')
 const router = express.Router();
@@ -31,7 +32,7 @@ var storage = multer.diskStorage({
 
 
 router.get('/loungeProviderLogin', (req, res, next)=>{
-    res.render('loungeProvider_login');
+    res.render('loungeProvider_login', {error:' '});
 })
 router.post('/loungeProviderLogin', lounge_provider_login)
 
@@ -39,6 +40,8 @@ router.get('/loungeProviderRegister', (req, res, next)=>{
     res.render('loungeProvider_register');
 })
 router.post('/loungeProviderRegister', lounge_provider_register)
+
+router.post('/logout-lounge', lounge_provider_signout)
 
 router.get('/lounge_provider_admin', lounge_provider_admin)
 router.get('/loungeRegistration',get_lounge_registration )
