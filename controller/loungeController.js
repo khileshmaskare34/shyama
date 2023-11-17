@@ -6,7 +6,9 @@ const shopRegistration = require('../models/shops/shopSchema');
 const shop_items = require('../models/shops/shopItem')
 const users = require('../models/users/users');
 const jwt = require('jsonwebtoken');
-
+const fs = require('fs')
+const rawData = fs.readFileSync('stations.json');
+const stationsArray = JSON.parse(rawData);
 
 exports.lounge_provider_login = async (req, res, next) => {
     try {
@@ -106,7 +108,9 @@ exports.lounge_registration = async (req, res, next) => {
         // console.log("luck" + newLounge)
 
         res.redirect("/lounge/lounge_provider_admin");
+        
     } catch (error) {
+      
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred khilesh");
         // return res.status(401).redirect('/loungeRegistration', { error: 'This station name is all ready registered !' });
@@ -188,7 +192,7 @@ exports.get_lounge_registration = async (req, res) => {
 
         var launges = await loungeSchema.find({ loungeProviderId: loungeProvider._id });
 
-        res.render('loungeRegistration', { loungeProvider, launges });
+        res.render('loungeRegistration', { loungeProvider, launges, stationsArray });
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");

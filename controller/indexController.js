@@ -13,20 +13,45 @@ const shopItems = require('../models/shops/shopItem');
 const Otp = require('../models/otp');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
-
-
+const fs = require('fs')
+const rawData = fs.readFileSync('stations.json');
+const stationsArray = JSON.parse(rawData);
 
 exports.homepage = async function(req, res, next) {
     try {
-        let loungess = await loungeSchema.find();
-        let station = [];
-        for (let i = 0; i < loungess.length; i++) {
-            let station1 = loungess[i].stationLocation;
-            station.push(station1);
-        }
-        console.log(station);
+       
+       if(req.cookies.Token || req.cookies.user_email){
 
+        let station = stationsArray;
+       
+       
+        let loungess = await loungeSchema.find();
+        // for (let i = 0; i < loungess.length; i++) {
+        //     let station1 = loungess[i].stationLocation;
+        //     station.push(station1);
+        // }
+        // console.log(station);
+
+        // let items = [];
+
+        // let a_i = await shopItem.find()
+
+      
+        res.render('loggedInindex', { station });
+       }else{
+
+
+        let loungess = await loungeSchema.find();
+        
+        let station = stationsArray;
+      
         res.render('index', { station });
+       }
+       
+       
+    
+    
+    
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
@@ -67,7 +92,7 @@ exports.user_signin = async function (req, res, next) {
                 station.push(station1);
             }
 
-            res.render('loggedInindex', { station });
+            res.redirect('/');
         }
     } catch (error) {
         console.error("An error occurred:", error);
@@ -78,11 +103,8 @@ exports.user_signin = async function (req, res, next) {
 exports.user_signup = async (req, res, next) => {
     try {
         let loungess = await loungeSchema.find();
-        let station = [];
-        for (let i = 0; i < loungess.length; i++) {
-            let station1 = loungess[i].stationLocation;
-            station.push(station1);
-        }
+        let station = stationsArray;
+       
 
         var newUser = new users({
             name: req.body.name,
@@ -164,6 +186,8 @@ exports.choice_filling = async(req, res)=>{
 }
 
 exports.get_choose_lounge = async (req, res, next) => {
+   
+   if(req.cookies.user_email || req.cookies.Token){
     try {
         let laungeId = req.params.id;
         let launge = await loungeSchema.findOne({ _id: laungeId });
@@ -198,6 +222,12 @@ exports.get_choose_lounge = async (req, res, next) => {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
     }
+
+}else{
+    res.redirect('/user_signin')
+}
+
+
 }
 
 exports.choose_lounge_id = async(req, res)=>{
@@ -232,11 +262,8 @@ exports.choose_lounge_id = async(req, res)=>{
 
 exports.after_loungeBook_loggedInIndex = async(req, res)=>{
     var lounges_for_shop = await loungeSchema.find();
-    let station = [];
-    for(let i = 0;i<lounges_for_shop.length;i++){
-      let station1 = lounges_for_shop[i].stationLocation
-      station.push(station1)
-    }
+    let station = stationsArray;
+    
   
     let lounge = await loungeSchema.findOne({ _id: req.cookies.longe_booked_by_user});  
     

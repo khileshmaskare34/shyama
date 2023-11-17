@@ -1,4 +1,7 @@
 const express = require('express');
+const fs = require('fs')
+const rawData = fs.readFileSync('stations.json');
+const stationsArray = JSON.parse(rawData);
 
 
 const {lounge_provider_login,

@@ -3,38 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Billing Page</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/nav.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
 
     <style>
-        *{
-            margin: 0%;
-            padding: 0%;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
-        #main{
-            width: 100%;
-            height: 100vh;
-            background-color: lightblue;
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
         }
-        .box1{
+
+        header {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .main-nav {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: #ffc107; /* Change the color on hover */
+        }
+
+        .burgger {
+            display: none;
+        }
+
+        #menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #main {
+            width: 100%;
+            min-height: 100vh;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .box1 {
             display: flex;
             width: 100%;
-            /* height: 50vh; */
-            background-color: lightcoral;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px; /* Added margin for separation */
         }
-        .box1 .img{
+
+        .img {
             width: 50%;
-            height: 100%;
-            background-color: lightgreen;
+            height: auto;
+            overflow: hidden;
         }
-        button{
+
+        .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .seat {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+
+        .seat h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #343a40; /* Dark color for headings */
+        }
+
+        .seat p {
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .seat h1 span {
+            color: #007bff; /* Accent color for price */
+            margin-left: 5px;
+        }
+
+        .seat h1.total-price {
+            font-size: 36px; /* Larger font for total price */
+            margin-top: 20px;
+        }
+
+        button {
             cursor: pointer;
-            padding: 1vh 1vw;
-            font-size: 3vh;
+            padding: 12px 24px;
+            font-size: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .secure-payment {
+            font-size: 16px;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+
+        .secure-payment strong {
+            color: #007bff;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -42,77 +154,72 @@
 
     <header class="header">
         <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
-        <!-- <nav class="navbar"> -->
-          <ul class="main-nav">
+        <ul class="main-nav">
             <li><a href="/lounge/loungeProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
             <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
-            <li><a href="#footer-container" >Contact</a></li>
-          </ul>
-    
-          <ul class="burgger">
+            <li><a href="#footer-container">Contact</a></li>
+        </ul>
+        <ul class="burgger">
             <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
-            <li><a href="#footer-container" >Contact</a></li>
-          </ul>
-          <i id="menu-toggle" class="ri-menu-fold-line"></i>
-    
+            <li><a href="#footer-container">Contact</a></li>
+        </ul>
+        <i id="menu-toggle" class="ri-menu-fold-line"></i>
     </header>
 
-    <div class="box1">
-        <div class="img"> <img src="/images/shofa1.png" alt=""></div>
-        <div class="seat">
-            <h1>hello ji  =  <%= newOrder.userName %></h1>
-            <p>this is your selected seat</p>
-            <% var seatLength=newOrder.seats.length %> 
-            <% for(var i = 0;i< seatLength ;i++){ %>
-                    <h1><%= newOrder.seats[i] %> price = 300</h1>
-            <% } %>
-            <h1>total price = <%= seatLength=newOrder.seats.length*300 %></h1>
-
-            <button id="rzp-button1">Pay with Razorpay</button>
-
+    <div id="main">
+        <div class="box1">
+            <div class="img"><img src="/images/shofa1.png" alt="Shofa Image"></div>
+            <div class="seat">
+                <h1>Hello, <%= newOrder.userName %>!</h1>
+                <p>Your reservation is confirmed. Enjoy your time!</p>
+                <p>This is your selected seat:</p>
+                <% var seatLength = newOrder.seats.length %> 
+                <% for (var i = 0; i < seatLength; i++) { %>
+                    <h1>Seat <%= newOrder.seats[i] %> - Price: <span>300</span></h1>
+                <% } %>
+                <h1 class="total-price">Total Price: <span><%= seatLength * 300 %></span></h1>
+               <a href="/"> <button id="rzp-button1">Pay with Razorpay</button></a>
+                <p class="secure-payment">Secure payment powered by <strong>Razorpay</strong>.</p>
+            </div>
         </div>
-        
     </div>
-   </div>
-   
-   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-   <script>
-    document.getElementById('rzp-button1').onclick = async function (e) {
-        e.preventDefault();
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-        let response = await fetch('http://localhost:3000/payment', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                amount: 500, // Change this to the desired amount in INR
-            })
-        });
+    <script>
+        document.querySelector('#rzp-button1').onclick = async function (e) {
+            // e.preventDefault();
+            let response = await fetch('http://localhost:3000/payment', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    amount: 500, // Change this to the desired amount in INR
+                })
+            });
 
-        let orderData = await response.json();
-        console.log(orderData)
+            let orderData = await response.json();
+            console.log(orderData)
 
-        var options = {
-            "key": "rzp_test_05baNxbdPygtnZ", // Replace with your Razorpay API key
-            "amount": orderData.order.amount, // Use the amount from the response
-            "currency": "INR",
-            "order_id": orderData.order.id, // Use the Order ID from the response
-            "handler": function (response) {
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature);
-            },
-        };
+            var options = {
+                "key": "rzp_test_05baNxbdPygtnZ", // Replace with your Razorpay API key
+                "amount": orderData.order.amount, // Use the amount from the response
+                "currency": "INR",
+                "order_id": orderData.order.id, // Use the Order ID from the response
+                "handler": function (response) {
+                    alert(response.razorpay_payment_id);
+                    alert(response.razorpay_order_id);
+                    alert(response.razorpay_signature);
+                },
+            };
 
-        var rzp1 = new Razorpay(options);
-        rzp1.open();
-    }
-   </script>
-   <%- include('footer/footer.ejs') -%>
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+    </script>
+    <%- include('footer/footer.ejs') -%>
 
-   <script src="\javascripts\nav.js"></script>
-
+    <script src="\javascripts\nav.js"></script>
 </body>
 </html>

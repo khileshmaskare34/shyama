@@ -49,12 +49,15 @@ body {
 }
 
 .choice{
-  padding: 2vh 1vw;
+  padding: 1.2rem;
   background-color: white;
-  width: 80vw;
+  width: 100% ;
   display: flex;
   flex-wrap: wrap;
   border-radius: 30px;
+}
+input{
+  padding-top: 1%;
 }
 
 .choice label {
