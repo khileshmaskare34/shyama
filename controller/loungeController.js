@@ -213,6 +213,6 @@ exports.lounge_provider_admin = async (req, res, next) => {
         res.render('longe_provider_admin', { LoungeUser, his_launges, loungeProvider });
     } catch (error) {
         console.error("An error occurred:", error);
-        res.status(500).send("An error occurred khil");
+        res.status(500).send("An error occurred");
     }
 }
