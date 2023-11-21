@@ -83,8 +83,6 @@ exports.lounge_provider_signout = async (req, res, next) =>{
     );
 }
 
-
-
 exports.lounge_registration = async (req, res, next) => {
     // console.log( "khilesh"+ req.file.loungeImage);
     try {
