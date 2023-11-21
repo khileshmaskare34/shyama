@@ -1,124 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/for_particuler_lounge.css">
-    <link rel="stylesheet" href="/stylesheets/nav.css">
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/for_particuler_lounge.css" />
+    <link rel="stylesheet" href="/stylesheets/nav.css" />
+  </head>
+  <body>
     <header class="header">
-        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
-        <!-- <nav class="navbar"> -->
-          <ul class="main-nav">
-            <li><a href="/lounge/lounge_provider_admin"><i class="ri-arrow-left-fill"></i></a></li>
-            <li><a href="/">Home</a></li>
-            <li><a href="#footer-container" >Contact</a></li>
-          </ul>
-    
-          <ul class="burgger">
-            <li><a href="/">Home</a></li>
-            <li><a href="#footer-container" >Contact</a></li>
-          </ul>
-          <i id="menu-toggle" class="ri-menu-fold-line"></i>
-    
+      <img
+        src="/images/shyama.-removebg-preview.png"
+        alt="image"
+        class="logo"
+      />
+      <!-- <nav class="navbar"> -->
+      <ul class="main-nav">
+        <li>
+          <a href="/lounge/lounge_provider_admin"
+            ><i class="ri-arrow-left-fill"></i
+          ></a>
+        </li>
+        <li><a href="/">Home</a></li>
+        <li><a href="#footer-container">Contact</a></li>
+      </ul>
+
+      <ul class="burgger">
+        <li><a href="/">Home</a></li>
+        <li><a href="#footer-container">Contact</a></li>
+      </ul>
+      <i id="menu-toggle" class="ri-menu-fold-line"></i>
     </header>
     <div class="page">
-        <h1><%=  perticuler_launge.loungeName %></h1>
-        <div class="box">
-            <div class="booked">
-            <p>Here is all your Booked seats</p>
-            <% var left_seats=[] ; %> 
-            <% for(var j=1;j<= perticuler_launge.noOfSeats; j++){ %>        
-            <%left_seats.push(j) %>
-            <% } %>
-            <div class="back_box">
-                <% for(var i=0;i< orders.length; i++){ %>
-                    
-                    <% for(var j=0;j< orders[i].seats.length; j++){ %>
-                    
-                    <div class="booked_seat">
-                        <h5> <%= orders[i].seats[j]  %> </h5>
-                    </div>
-                    
-                    <%  const inputString = orders[i].seats[j]; %>
-                    <% const extractedNumber = parseInt(inputString.match(/\d+/)[0]); %>
-                        <%  const numberToRemove = extractedNumber; %>
-                        <%   left_seats = left_seats.filter(number => number !== numberToRemove); %>
-                        <% } %>
-                    
-                <% } %>
-            </div>
-            </div>
-            <div class="not_booked">
-            <h2>No Of Seats Left :  <%= left_seats.length  %> </h2>
-            <p>Here is all your 'NOT BOOKED' seats: </p>
-            <div class="back_box">
-                <% for(var i=0;i< left_seats.length; i++){ %>
-                    <div class="notbooked_seat">
-                        <h5> A<%= left_seats[i]  %> </h5>
-                    </div>
-                <% } %>
-            </div>
-            </div>
-        </div>
+      <h1><%= perticuler_launge.loungeName %></h1>
+      <div class="box">
+        <div class="booked">
+          <p>Here is all your Booked seats</p>
+          <% var left_seats=[] ; %> <% for(var j=1;j<=
+          perticuler_launge.noOfSeats; j++){ %> <%left_seats.push(j) %> <% } %>
+          <div class="back_box">
+            <% for(var i=0;i< orders.length; i++){ %> <% for(var j=0;j<
+            orders[i].seats.length; j++){ %>
 
-        <div class="seat_details">
-            <h2> Here is all your orders </h2> 
-            <div class="btm_box">
-                <% for(var j = 0; j < orders.length; j++){ %>
-                    <% let obj = users1.find(o => o._id == orders[j].userId);  %>
-             
-                    <div class="details">
-                            <h3> Order Id :  <%= orders[j]._id %> </h3>
-                            <h3> User Name :  <%= obj.name %> </h3>
-                             <h3> Seats booked :  
-                               <% for(var k = 0 ; k< orders[j].seats.length; k++){ %>
-                                 <%=  orders[j].seats[k] %>
-                               <%}%>  
-                            </h3>
-                            <h3> User Email :  <%= obj.email %> </h3>
-       
-       
-                         <%  let futureDateUTC = orders[j].expireTime; %>
-                            <% let currentDateUTC = new Date(); %>
-                            <% let timeDifferenceMs = futureDateUTC - currentDateUTC;%>
-                            <% let hoursLeft = Math.floor(timeDifferenceMs / (1000 * 60 * 60));%>
-                            <% let minutesLeft = Math.floor((timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60));%>
-                        <%  const secondsLeft = Math.floor((timeDifferenceMs % (1000 * 60)) / 1000); %>
-                        <% console.log(`Hours left: ${hoursLeft}`);%>
-                            <% console.log(`Minutes left: ${minutesLeft}`);%>
-       
-                        <h3>Time left: <span class="timer<%= j %>"></span> </h3> 
-                    
-                        <% futureDateUtc = ''; currentDateUTC = ''; %>
-                
-                        <script>
+            <div class="booked_seat">
+              <h5><%= orders[i].seats[j] %></h5>
+            </div>
+
+            <% const inputString = orders[i].seats[j]; %> <% const
+            extractedNumber = parseInt(inputString.match(/\d+/)[0]); %> <% const
+            numberToRemove = extractedNumber; %> <% left_seats =
+            left_seats.filter(number => number !== numberToRemove); %> <% } %>
+            <% } %>
+          </div>
+        </div>
+        <div class="not_booked">
+          <h2>No Of Seats Left : <%= left_seats.length %></h2>
+          <p>Here is all your 'NOT BOOKED' seats:</p>
+          <div class="back_box">
+            <% for(var i=0;i< left_seats.length; i++){ %>
+            <div class="notbooked_seat">
+              <h5>A<%= left_seats[i] %></h5>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="seat_details">
+        <h2>Here is all your orders</h2>
+        <div class="btm_box">
+          <% for(var j = 0; j < orders.length; j++){ %> <% let obj =
+          users1.find(o => o._id == orders[j].userId); %>
+
+          <div class="details">
+            <h3>Order Id : <%= orders[j]._id %></h3>
+            <h3>User Name : <%= obj.name %></h3>
+            <h3>
+              Seats booked : <% for(var k = 0 ; k< orders[j].seats.length; k++){
+              %> <%= orders[j].seats[k] %> <%}%>
+            </h3>
+            <h3>User Email : <%= obj.email %></h3>
+
+            <% let futureDateUTC = orders[j].expireTime; %> <% let
+            currentDateUTC = new Date(); %> <% let timeDifferenceMs =
+            futureDateUTC - currentDateUTC;%> <% let hoursLeft =
+            Math.floor(timeDifferenceMs / (1000 * 60 * 60));%> <% let
+            minutesLeft = Math.floor((timeDifferenceMs % (1000 * 60 * 60)) /
+            (1000 * 60));%> <% const secondsLeft = Math.floor((timeDifferenceMs
+            % (1000 * 60)) / 1000); %> <% console.log(`Hours left:
+            ${hoursLeft}`);%> <% console.log(`Minutes left: ${minutesLeft}`);%>
+
+            <h3>Time left: <span class="timer<%= j %>"></span></h3>
+
+            <% futureDateUtc = ''; currentDateUTC = ''; %>
+
+            <script>
+              function updateTimer() {
+                let futureDate = new Date("<%= futureDateUTC %>");
+                let now = new Date();
+                let timeDifferenceMs = futureDate - now;
+
+                if (timeDifferenceMs <= 0) {
+                  let timerElement = document.querySelector(".timer<%= j %>");
+                  timerElement.textContent = "Time Expired";
+                } else {
+                  let hours = Math.floor(timeDifferenceMs / (1000 * 60 * 60));
+                  let minutes = Math.floor(
+                    (timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60)
+                  );
+                  let seconds = Math.floor(
+                    (timeDifferenceMs % (1000 * 60)) / 1000
+                  );
+
+                  let timerElement = document.querySelector(".timer<%= j %>");
+                  timerElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                }
+              }
+
+              setInterval(updateTimer, 1000);
+              updateTimer();
+            </script>
+
+            <!-- <script>
                             function updateTimer() {
                                 let futureDate = new Date('<%= futureDateUTC %>');
                                 let now = new Date();
                                 let timeDifferenceMs = futureDate - now;
-                                
-                                let hours = Math.floor(timeDifferenceMs / (1000 * 60 * 60));
-                                let minutes = Math.floor((timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60));
-                                let seconds = Math.floor((timeDifferenceMs % (1000 * 60)) / 1000);
-                                
-                                let timerElement = document.querySelector('.timer<%= j %>');
-                                timerElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                        
+                                if (timeDifferenceMs <= 0) {
+                                    // Time has elapsed, stop the timer
+                                    clearInterval(timerInterval);
+                                    let timerElement = document.querySelector('.timer<%= j %>');
+                                    timerElement.textContent = 'Time Expired';
+                                } else {
+                                    let hours = Math.floor(timeDifferenceMs / (1000 * 60 * 60));
+                                    let minutes = Math.floor((timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60));
+                                    let seconds = Math.floor((timeDifferenceMs % (1000 * 60)) / 1000);
+                        
+                                    let timerElement = document.querySelector('.timer<%= j %>');
+                                    timerElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                                }
                             }
-                    
-                            setInterval(updateTimer, 1000);
+                        
+                            const timerInterval = setInterval(updateTimer, 1000);
                             updateTimer();
-                        </script>
-                    </div>
-               <% } %>
-            </div>
+                        </script> -->
+          </div>
+          <% } %>
         </div>
-
+      </div>
     </div>
-  <script src="\javascripts\nav.js"></script>
-</body>
+    <script src="\javascripts\nav.js"></script>
+  </body>
 </html>

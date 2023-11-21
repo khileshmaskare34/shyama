@@ -1,136 +1,151 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   <form action="/foodOrder" method="post">
-    <input type="text" name="itemname" value="<%=item.item_Name %>">
-
-    <input type="text" name="itemid" value="<%=item._id %>">
-    <h1>shop name : <%= shop_name.shopName %></h1>
-   
-
-    <img width="200" height="100" src="/upload/<%= item.Image%>" alt="">
-    
- 
-    <label for="quantity">Quantity (between 1 and 5):</label>
-    <input type="number" id="quantity" name="quantity" min="1" max="10">
- 
-    <br>
-    <button type="submit">order now</button>
-</form>
-</body>
-</html> -->
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Order</title>
-    <link rel="stylesheet" href="/stylesheets/nav.css">
-    <link rel="stylesheet" href="/stylesheets/foodSelection.css"> <!-- Link to your custom CSS file for styling -->
-</head>
-
-<body>
-    <header class="header">
-        <img src="\images\logo.jpg" alt="" class="logo">
-        <nav class="navbar">
-          <ul class="main-nav">
-            <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#footer-container" >Contact</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="/user_account">User Account</a></li>
-          </ul>
-        </nav>
-        <button class="menu-toggle">&#9776;</button>
-    </header>
-   <header>
-       <h1>Welcome to <span class="company-name">Company Name</span></h1>
-   </header>
-   <main>
-        <section class="item-details">
-            <h2>Item Details</h2>
-            <h3>Shop Name: <span class="shop-name"><%= shop_name.shopName %></span></h3>
-            <img src="/upload/<%= item.Image %>" alt="Item Image">
-        </section>
-
-       <section class="order-form">
-           <h2>Order Food</h2>
-           <form action="/foodOrder" method="post">
-               <div class="form-group">
-                   <label for="itemname">Item Name:</label>
-                   <input type="text" id="itemname" name="itemname" value="<%= item.item_Name %>">
-               </div>
-
-               <div class="form-group">
-                   <label for="itemid">Item ID:</label>
-                   <input type="text" id="itemid" name="itemid" value="<%= item._id %>">
-               </div>
-
-               <div class="form-group">
-                   <label for="quantity">Quantity (between 1 and 10):</label>
-                   <input type="number" id="quantity" name="quantity" min="1" max="10">
-               </div>
- 
-               <div class="form-group">
-                   <!-- <button type="submit">Order Now</button> -->
-                  <button type="submit" id="rzp-button1">Pay with Razorpay</button>
-
-               </div>
-           </form>
-       </section>
-   </main>
-
-   <footer>
-       <p>&copy; 2023 Company Name. All rights reserved.</p>
-   </footer>
-
-   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-      <script>
-    document.getElementById('rzp-button1').onclick = async function (e) {
-        e.preventDefault();
-
-        let response = await fetch('http://localhost:3000/payment', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                amount: 500, // Change this to the desired amount in INR
-            })
-        });
-
-        let orderData = await response.json();
-        console.log(orderData)
-
-        var options = {
-            "key": "rzp_test_05baNxbdPygtnZ", // Replace with your Razorpay API key
-            "amount": orderData.order.amount, // Use the amount from the response
-            "currency": "INR",
-            "order_id": orderData.order.id, // Use the Order ID from the response
-            "handler": function (response) {
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature);
-            },
-        };
-
-        var rzp1 = new Razorpay(options);
-        rzp1.open();
+    <title>Food Categories</title>
+<style>
+    @font-face {
+        font-family: chapman;
+        src: url("./font/Chapman.ttf");
     }
-</script>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+   }   
+   .food-section{
+    width: 100%;
+    height: 100vh;
+    /* background-color: rgb(228, 196, 14); */
+   }
+   h1{
+    padding: 10px 5px;
+    text-align: center;
+   }
+   .food{
+    width: 100%;
+    height: 95%;
+    /* background-color: lightseagreen; */
+   }
+   .top{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+    width: 100%;
+    height: 60%;
+    /* background-color: rgb(255, 248, 240); */
+   }
+   .f-bottom{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+    /* background-color: lightgreen; */
+   }
+   .food-text{
+    position: relative;
+    padding: 10px 10px;
+    width: 50%;
+    height: 70%;
+    box-shadow: 0px 0px 15px 2px rgb(186, 182, 182); 
+   }
+   .food-text::after{
+    content: "";
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    border-radius: 50%;
+    animation: Ani-circle 10s linear infinite;
+    background-image: url("https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg");
+    background-size: cover;
+   }
+   @keyframes Ani-circle {
+     0%{
+        transform: rotate(0deg);
+     }
+     100%{
+        transform: rotate(360deg);
+     }
+   }
+   .food-text>h2{
+    text-align: center;
+    font-family: chapman;
+    color: #006e4b;
+   }
+   .food-text>h3{
+    width: 90%;
+    font-size: 4vw;
+    font-weight: 500;
+   }
+   .food-text>p{
+    margin-top: 1vh;
+   }
+   .food-text>button{
+    margin-top: 3vh;
+   }
+   .f-bottom > .box1{
+    width: 15vw;
+    height: 37vh;
+   }
+   .box1>img{
+    width: 100%;
+    height: 85%;
+    background-size: cover;
+   }
+   .box1>p{
+    text-align: center;
+    font-size: 1.5vw;
+   }
+
+</style>
+</head>
+<body>
+    <div class="food-section">
+        <h1>Food Order</h1>
+        <div class="food">
+         <div class="top">
+            <div class="food-text">
+                <h2>welcome to our food service</h2>
+                <h3>Choosing tasty food in your location</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis laudantium, quae architecto reprehenderit, quidem minus, blanditiis sunt facere maxime dolorum eligend</p>
+                <button>Explore</button>
+            </div>
+            <div class="img">
+                <img src="/images/food_home.png" alt="">
+            </div>
+         </div>
+         <div class="f-bottom">
+            <div class="box1">
+                <img src="https://img.freepik.com/premium-photo/delicious-burger-high-quality-products-photo-shoot-dark-background-generated-by-ai_749933-80.jpg" alt="">
+                <p>Burger</p>
+            </div>
+            <div class="box1">
+                <img src="https://img.freepik.com/premium-photo/plate-tortillas-with-side-food-it_662214-171465.jpg" alt="">
+                <p>Dosa</p>
+            </div>
+            <div class="box1">
+                <img src="https://www.watscooking.com/images/dish/large/South_Indian_vegetarian_full_meals1.jpg" alt="">
+                <p>Indian thali</p>
+            </div>
+            <div class="box1">
+                <img src="https://b.zmtcdn.com/data/pictures/9/20596159/3019edeef7c27e799c549f9ea037ca1b.jpg?fit=around|960:500&crop=960:500;*,*" alt="">
+                <p>Momose</p>
+            </div>
+            <div class="box1">
+                <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/12/samosa-recipe.jpg" alt="">
+                <p>Samosa</p>
+            </div>
+            <div class="box1">
+                <img src="https://www.cookshideout.com/wp-content/uploads/2015/05/Instant-Pot-Pav-Bhaji_FI.jpg" alt="">
+                <p>Pav Bhaji</p>
+            </div>
+         </div>
+        </div> 
+    </div>
 </body>
 </html>
