@@ -4,7 +4,6 @@ after service page
 
 
 
-      <%- include ('footer/nav.ejs')-%>
-      <%- include ('function.ejs') -%>
-      <%- include ('about1.ejs') -%>
-      <%- include ('service.ejs') -%>
+       <div class="f-bottom">
+           
+         </div>

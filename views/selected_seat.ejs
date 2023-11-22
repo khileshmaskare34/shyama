@@ -178,7 +178,7 @@
                     <h1>Seat <%= newOrder.seats[i] %> - Price: <span>300</span></h1>
                 <% } %>
                 <h1 class="total-price">Total Price: <span><%= seatLength * 300 %></span></h1>
-               <a href="/"> <button id="rzp-button1">Pay with Razorpay</button></a>
+                <button id="rzp-button1">Pay with Razorpay</button>
                 <p class="secure-payment">Secure payment powered by <strong>Razorpay</strong>.</p>
             </div>
         </div>
@@ -188,7 +188,7 @@
 
     <script>
         document.querySelector('#rzp-button1').onclick = async function (e) {
-            // e.preventDefault();
+            e.preventDefault();
             let response = await fetch('http://localhost:3000/payment', {
                 method: 'POST',
                 headers: {
