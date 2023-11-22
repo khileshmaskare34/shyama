@@ -390,3 +390,34 @@ exports.particuler_item = async (req, res, next) => {
     res.render('foodSelection', { item, shop_name });
 
 }
+
+
+
+exports.show_food_at_station = async (req, res, next) => {
+    // var shops = []
+    var station = req.body.stationName;
+
+    var shops =  await shopSchema.find({station_Name: station})
+    console.log(shops)
+    var items =[]
+
+    for(var i= 0 ; i<shops.length; i++){
+
+        var its = await shop_items.find({shop_id:shops[i].shopEmail})
+        console.log(its)
+        items.push(its)
+
+
+    }
+
+    let flattenedArray = items.flat();
+    console.log(items)
+
+    
+
+    context= {
+        'items':items
+    }
+    res.render('showFoodAtStation',context)
+
+}

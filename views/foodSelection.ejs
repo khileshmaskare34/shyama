@@ -162,11 +162,17 @@ select{
                     <div class="popup">
                         <h2>Select your station location</h2>
                         <a class="close" href="#">&times;</a>
+                        
+                       <form action="/shop/showFoodAtStation" method="post" >
                         <select class="station" name="stationName">
                             <% for(var i=0;i< station.length; i++){ %>
                               <option value="<%= station[i] %>" name="<%= station[i] %>" ><%= station[i] %></option>
                             <% } %>
+                       
                         </select>
+                        <button type="submit" >Explore</button>
+                    </form> 
+                    
                     </div>
                 </div>
 

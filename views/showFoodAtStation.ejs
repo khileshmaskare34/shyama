@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>showing food </h1>
+<% for(var i = 0; i< items[0].length; i++){ %>
+<h1><%= items[0][i].item_Name  %></h1>
+<img src="/upload/<%=items[0][i].Image%>" alt="">
+
+<%}%>
+</body>
+</html>
