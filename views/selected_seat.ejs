@@ -183,6 +183,7 @@
                 "currency": "INR",
                 "order_id": orderData.order.id, // Use the Order ID from the response
                 "handler": function (response) {
+                  // user: req.user 
                     alert(response.razorpay_payment_id);
                     alert(response.razorpay_order_id);
                     alert(response.razorpay_signature);

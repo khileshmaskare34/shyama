@@ -28,7 +28,6 @@ const schedule = require("node-schedule");
 const prev_orders = require("./../models/lounges/pevious_orders");
 
 //  ************** The scheduler which runs every 1 hour and 1 minut ******************
-
 schedule.scheduleJob("1 */1 * * *", () => {
   console.log("This task will run every 1 hour and 1 minute." + new Date());
   let current = new Date();

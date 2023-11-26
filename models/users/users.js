@@ -4,11 +4,22 @@ const mongoose=require("mongoose");
 
 
 var userSchema=mongoose.Schema({
-  password:String,
-  // username:String,
-  email:String,
-  name:String,
-  phoneNo:Number
+  password: {
+    type : String,
+    required : true
+  },
+  email: {
+    type : String,
+    required : true
+  },
+  name: {
+    type : String,
+    required : true
+  },
+  phoneNo: {
+    type : Number,
+    required : true
+}
 })
 
 
