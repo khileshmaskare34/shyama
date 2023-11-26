@@ -5,11 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registered Lounges</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
     <link rel="stylesheet" href="stylesheets/chooseLounge.css">
+    <link rel="stylesheet" href="stylesheets/nav.css">
 </head>
 <body>
 
-      <div id="main">
+  <header class="header">
+    <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+    <!-- <nav class="navbar"> -->
+      <ul class="main-nav">
+        <li><a href="/"><i class="ri-arrow-left-fill"></i></a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="#footer-container" >Contact</a></li>
+      </ul>
+
+      <ul class="burgger">
+        <li><a href="/">Home</a></li>
+        <li><a href="#footer-container" >Contact</a></li>
+      </ul>
+      <i id="menu-toggle" class="ri-menu-fold-line"></i>
+
+  </header>
+
+  <div id="main">
         <h1>Registered Lounges in Station</h1>
         <ul class="lounge-list">
         <% for(var i = 0; i < lounges.length; i++){ %>
@@ -26,7 +46,9 @@
          </li>
         <% } %> 
         </ul>
-      </div>
+  </div>
+
+  <%- include ('footer/footer.ejs') -%>
     
 </body>
 </html> 

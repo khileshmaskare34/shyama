@@ -14,7 +14,8 @@
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;  
+    overflow-x: hidden;  
    }   
    .food-section{
     width: 100%;
@@ -29,6 +30,8 @@
     width: 100%;
     height: 95%;
     /* background-color: lightseagreen; */
+    overflow-y: hidden;
+    overflow-x: auto;
    }
    .top{
     display: flex;
@@ -44,7 +47,13 @@
     align-items: center;
     width: 100%;
     height: 40%;
-    /* background-color: lightgreen; */
+    padding-left: 2vw;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #ccc;
+    cursor: pointer;
    }
    .food-text{
     position: relative;
@@ -61,7 +70,7 @@
     top: -20%;
     right: -20%;
     border-radius: 50%;
-    animation: Ani-circle 10s linear infinite;
+    animation: Ani-circle 200s linear infinite;
     background-image: url("https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg");
     background-size: cover;
    }
@@ -88,10 +97,7 @@
     margin-bottom: 2vh;
    }
   
-   .f-bottom > .box1{
-    width: 15vw;
-    height: 37vh;
-   }
+  
    .box1>img{
     width: 100%;
     height: 85%;
@@ -143,6 +149,29 @@ select{
     font-size: 15px;
 }
 
+.product-list {
+  display: flex;
+  gap: 3vw;
+  flex-direction: row;
+  /* background-color: red; */
+  height: 100%;
+  width: 100%;
+}
+
+.product-list .box1 {
+  position: relative;
+  flex: 0 0 auto;
+  width: 15vw;
+  height: 100%;
+}
+
+.f-bottom::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
+}
+
+
 </style>
 </head>
 <body>
@@ -162,11 +191,17 @@ select{
                     <div class="popup">
                         <h2>Select your station location</h2>
                         <a class="close" href="#">&times;</a>
+
+                       <form action="/shop/showFoodAtStation" method="post" >
                         <select class="station" name="stationName">
                             <% for(var i=0;i< station.length; i++){ %>
                               <option value="<%= station[i] %>" name="<%= station[i] %>" ><%= station[i] %></option>
                             <% } %>
+                       
                         </select>
+                        <button type="submit" >Explore</button>
+                    </form> 
+                    
                     </div>
                 </div>
 
@@ -175,33 +210,39 @@ select{
                 <img src="/images/food_home.png" alt="">
             </div>
          </div>
+         
          <div class="f-bottom">
-            <div class="box1">
-                <img src="https://img.freepik.com/premium-photo/delicious-burger-high-quality-products-photo-shoot-dark-background-generated-by-ai_749933-80.jpg" alt="">
-                <p>Burger</p>
-            </div>
-            <div class="box1">
-                <img src="https://img.freepik.com/premium-photo/plate-tortillas-with-side-food-it_662214-171465.jpg" alt="">
-                <p>Dosa</p>
-            </div>
-            <div class="box1">
-                <img src="https://www.watscooking.com/images/dish/large/South_Indian_vegetarian_full_meals1.jpg" alt="">
-                <p>Indian thali</p>
-            </div>
-            <div class="box1">
-                <img src="https://b.zmtcdn.com/data/pictures/9/20596159/3019edeef7c27e799c549f9ea037ca1b.jpg?fit=around|960:500&crop=960:500;*,*" alt="">
-                <p>Momose</p>
-            </div>
-            <div class="box1">
-                <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/12/samosa-recipe.jpg" alt="">
-                <p>Samosa</p>
-            </div>
-            <div class="box1">
-                <img src="https://www.cookshideout.com/wp-content/uploads/2015/05/Instant-Pot-Pav-Bhaji_FI.jpg" alt="">
-                <p>Pav Bhaji</p>
+            <div class="product-list" id="productList">
+                <div class="box1">
+                    <img src="https://img.freepik.com/premium-photo/delicious-burger-high-quality-products-photo-shoot-dark-background-generated-by-ai_749933-80.jpg" alt="">
+                    <p>Burger</p>
+                </div>
+                <div class="box1">
+                    <img src="https://img.freepik.com/premium-photo/plate-tortillas-with-side-food-it_662214-171465.jpg" alt="">
+                    <p>Dosa</p>
+                </div>
+                <div class="box1">
+                    <img src="https://www.watscooking.com/images/dish/large/South_Indian_vegetarian_full_meals1.jpg" alt="">
+                    <p>Indian thali</p>
+                </div>
+                <div class="box1">
+                    <img src="https://b.zmtcdn.com/data/pictures/9/20596159/3019edeef7c27e799c549f9ea037ca1b.jpg?fit=around|960:500&crop=960:500;*,*" alt="">
+                    <p>Momose</p>
+                </div>
+                <div class="box1">
+                    <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/12/samosa-recipe.jpg" alt="">
+                    <p>Samosa</p>
+                </div>
+                <div class="box1">
+                    <img src="https://www.cookshideout.com/wp-content/uploads/2015/05/Instant-Pot-Pav-Bhaji_FI.jpg" alt="">
+                    <p>Pav Bhaji</p>
+                </div>
+               
             </div>
          </div>
+         
         </div> 
     </div>
+
 </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/showFoodAtStation.css">
+
+</head>
+
+<body>
+
+  <header class="header">
+        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <!-- <nav class="navbar"> -->
+          <ul class="main-nav">
+            <li><a href="/"><i class="ri-arrow-left-fill"></i></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+    
+          <ul class="burgger">
+            <li><a href="/">Home</a></li>
+            <li><a href="#footer-container" >Contact</a></li>
+          </ul>
+          <i id="menu-toggle" class="ri-menu-fold-line"></i>
+    
+  </header>
+
+  <div class="top_home">
+    <h1><span>Food </span> Ordering</h1>
+    <input type="text" class="search-bar" placeholder="Search for your favorite food...">
+  </div>
+  <section>
+    <div class="categories">
+        <div class="category">
+            <img src="https://placekitten.com/200/150" alt="Burgers">
+            <h2>Burgers</h2>
+        </div>
+        <div class="category">
+            <img src="https://placekitten.com/200/150" alt="Pizza">
+            <h2>Pizza</h2>
+        </div>
+        <div class="category">
+            <img src="https://placekitten.com/200/150" alt="Sushi">
+            <h2>Sushi</h2>
+        </div>
+        <!-- Add more categories as needed -->
+    </div>
+</section>
+
+<div class="cart-section">
+  <div class="container">
+    <img src="https://firebasestorage.googleapis.com/v0/b/cajaregistradora-776cc.appspot.com/o/pngwing.com(2).png?alt=media&token=bde13cf8-4b17-4da9-90cf-c16db83b2e1f" />
+    <div class="content-box">
+      <h4 class="name">Veggie Burguer</h4>
+      <p>A burguer typically considered a sandwich, consisting of one or more cooked patties-usually placed inside a sliced bread roll or bun</p>
+      <p>Onion, Lettuce, Tomatoe, Patty, Cheese</p>
+      <div class="btn">
+        <h2 class="price">$ 5</h2>
+        <a href="#">Order Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+   
+    <h1>showing food </h1>
+   
+   <% if(items.length > 0){ %>
+    <% for(var i = 0; i< items[0].length; i++){ %>
+    <h1><%= items[0][i].item_Name  %></h1>
+    <img src="/upload/<%=items[0][i].Image%>" alt="">
+
+
+    <%}} else {%>
+<h1>non item found</h1>
+        <%}%>
+    <%- include ('footer/footer.ejs') -%>
+</body>
+</html>

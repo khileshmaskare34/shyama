@@ -109,6 +109,7 @@ exports.user_signup = async (req, res, next) => {
         var newUser = new users({
             name: req.body.name,
             email: req.body.email,
+            phoneNo:req.body.phoneNumber,
             password: req.body.password
         });
 
@@ -153,6 +154,7 @@ exports.user_account = async function (req, res, next) {
     try {
         let email = req.cookies.user_email;
         let user = await users.findOne({ email: email });
+        console.log("lux" + user)
 
         if (!user) {
             console.log("User not found");
@@ -160,7 +162,8 @@ exports.user_account = async function (req, res, next) {
         }
 
         let orders = await orderdLounge.find({ userId: user._id })
-        console.log("Orders: ", orders);
+        // console.log("Orders: ", orders);
+        // console.log("users", user)
 
         res.render('userAccountPage', { user, orders });
     } catch (error) {
@@ -169,6 +172,25 @@ exports.user_account = async function (req, res, next) {
     }
 }
    
+exports.your_Order = async function (req, res, next) {
+    try {
+        let email = req.cookies.user_email;
+        let user = await users.findOne({ email: email });
+
+        if (!user) {
+            console.log("User not found");
+            return res.status(404).send("User not found");
+        }
+
+        let orders = await orderdLounge.find({ userId: user._id })
+        // console.log("Orders: ", orders);
+
+        res.render('yourOrder', {orders });
+    } catch (error) {
+        console.error("An error occurred:", error);
+        res.status(500).send("An error occurred");
+    }
+}
 exports.choice_filling = async(req, res)=>{
     const stationName = req.body.stationName
     const bedCount = req.body.bedCount;
@@ -176,11 +198,26 @@ exports.choice_filling = async(req, res)=>{
   
     let checkin1 = req.body.checkIn
     let dateF = moment(checkin1).format('YYYY-MM-DDTHH:mm:ss.SSSZ')
-  let UTC_futureDate = moment(dateF).utc().add(hours, 'hours')
+    let UTC_futureDate = moment(dateF).utc().add(hours, 'hours')
   
     myDate = UTC_futureDate ;
     let lounges = await loungeSchema.find({stationLocation: stationName})
-    console.log("khilesh" + lounges)
+    // console.log("khilesh" + lounges)
+  
+    res.render("chooseLaunge", {lounges})
+}
+exports.get_choice_filling = async(req, res)=>{
+    const stationName = req.body.stationName
+    const bedCount = req.body.bedCount;
+    let hours = req.body.hours
+  
+    let checkin1 = req.body.checkIn
+    let dateF = moment(checkin1).format('YYYY-MM-DDTHH:mm:ss.SSSZ')
+    let UTC_futureDate = moment(dateF).utc().add(hours, 'hours')
+  
+    myDate = UTC_futureDate ;
+    let lounges = await loungeSchema.find({stationLocation: stationName})
+    // console.log("khilesh" + lounges)
   
     res.render("chooseLaunge", {lounges})
 }
@@ -236,6 +273,7 @@ exports.choose_lounge_id = async(req, res)=>{
     let user = await users.findOne({ email: req.cookies.user_email})
     let username = user.name;
     
+
     let seat_1;
     if(typeof req.body.seat !== 'object'){
       seat_1 = [req.body.seat]
@@ -255,8 +293,8 @@ exports.choose_lounge_id = async(req, res)=>{
     newOrder.save().then(function(dets){
       res.cookie('longe_booked_by_user', newOrder.loungeId, { httpOnly: true, maxAge: 1.728e8 });
       // res.redirect('/after_loungeBook_loggedInIndex')
-      // console.log(newOrder.userName)
-      res.render("selected_seat", {newOrder});
+      console.log(newOrder, user)
+      res.render("selected_seat", {newOrder, user});
     })
 }
 
@@ -276,7 +314,8 @@ exports.after_loungeBook_loggedInIndex = async(req, res)=>{
     }
     
     let shop_name = await shopSchema.find();
-      res.render('after_loungeBook_loggedInIndex', {station,lounge, all_items, shops1});
+    res.redirect('/');
+    //   res.render('after_loungeBook_loggedInIndex', {station,lounge, all_items, shops1});
 }
 exports.particuler_item = async (req, res, next) => {
     
@@ -287,4 +326,13 @@ exports.particuler_item = async (req, res, next) => {
 
     res.render('foodSelection', { item, shop_name });
 
+}
+
+
+exports.seat_canslation= async (req, res, next) => {
+    console.log(req.body.order_id)
+        var order =  await orderdLounge.findOneAndDelete({_id: req.body.order_id})     
+console.log("order deleted ")
+
+res.redirect('/yourOrder')
 }

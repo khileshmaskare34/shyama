@@ -7,7 +7,8 @@ var userSchema=mongoose.Schema({
   password:String,
   // username:String,
   email:String,
-  name:String
+  name:String,
+  phoneNo:Number
 })
 
 

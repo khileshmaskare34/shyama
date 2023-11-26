@@ -1,120 +1,99 @@
-/* Reset some default styles */
-body, h1, p {
+body{
   margin: 0;
   padding: 0;
 }
 
-/* Overall page styling */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-}
 
-.main {
+.myAccount{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  width: 100%;
+  /* height: 100vh; */
+  /* background-color: rgb(12, 183, 12); */
 }
-
-.left {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.main-box{
+  width: 80%;
+  /* height: 100%; */
+  /* background-color: lightblue; */
 }
-
-/* User name section */
-#imgbox img {
-  width: 100px;
-  height: 100px;
+.upper-box{
+  width: 100%;
+  height: 30vh;
+  background-color: rgb(131, 189, 194);
+}
+.lower-box{
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70vh;
+  /* background-color: lightgreen; */
+}
+.imgbox{
+  width: 160px;
+  height: 16  0px;
+  border: 1px solid black;
   border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
+}
+.imgbox>img{
+  width: 100%;
+  height: 100%;
+}
+.left-box{
+  padding: 1vh 2vw;
+  width: 48%;
+  height: 100%;
+  /* background-color: rgb(0, 187, 255); */
+  box-shadow: 0 0 5px 2px #e6e2e2;
+}
+.right-box{
+  padding: 1vh 2vw;
+  width: 48%;
+  height: 100%;
+  /* background-color: rgb(213, 186, 186); */
+  box-shadow: 0 0 5px 2px #dedada;
+}
+.left-box>h1{
+  text-align: center;
+  margin-bottom: 4vh;
+}
+.details-seats{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2vh;
+  width: 100%;
+  margin-bottom: 4vh;
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+.details-foods{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2vh;
+  width: 100%;
+  margin-bottom: 4vh;
 }
 
-/* Order seats section */
-#order-seats {
-  margin-top: 20px;
+a{
+  text-decoration: none;
+}
+a>span{
+  margin-left: 10px;
+  padding: 5px 5px;
+  color: #13b783;
+  box-shadow: 0 0 5px 2px #dedada;
+  background-size: cover;
+
+}
+span>img{
+  /* width: 3vw; */
+  height: 2vw;
+  background-size: cover;
 }
 
-#order-seats h1 {
-  font-size: 18px;
-  margin: 5px 0;
-}
 
-/* Email and phone section */
-#contact-info {
-  margin-top: 20px;
-}
 
-#contact-info p {
-  font-size: 16px;
-  margin: 5px 0;
-}
 
-/* Edit and logout buttons */
-#buttons {
-  margin-top: 20px;
-}
-
-.button {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.button:last-child {
-  margin-right: 0;
-}
-
-/* Hover effect for buttons */
-.button:hover {
-  background-color: #0056b3;
-}
-/* ... (previously defined styles) ... */
-
-/* Email and phone section */
-#contact-info {
-  margin-top: 20px;
-}
-
-#contact-info p {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-/* Edit and logout buttons */
-#buttons {
-  margin-top: 20px;
-}
-
-.button {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.button:last-child {
-  margin-right: 0;
-}
-
-/* Hover effect for buttons */
-.button:hover {
-  background-color: #0056b3;
-}

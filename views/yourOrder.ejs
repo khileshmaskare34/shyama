@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>lucky</h1>
+
+    <div>
+        <%  for(var i =0;i< orders.length;i++){  %>
+            <%  for(var j = 0;j < orders[i].seats.length;j++){ %>
+                  <h1>Seats Booked : <%= orders[i].seats[j] %> </h1>
+                  <form action="/cancelSeat" method="post">
+                    <input type="text" name="order_id" value="<%=orders[i]._id%>">
+                    <button style="background-color: red;" >cancel order</button>
+                  </form>
+            <%  }  %>
+         <%  }   %>
+    </div>
+</body>
+</html>
