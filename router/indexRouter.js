@@ -17,6 +17,9 @@ const {
   particuler_item,
   after_loungeBook_loggedInIndex,
   user_signout,
+  your_Order,
+  seat_canslation,
+  get_choice_filling
 } = require("../controller/indexController");
 
 const router = express.Router();
@@ -90,10 +93,12 @@ router.get("/provider", (req, res, next) => {
   res.render("provider");
 });
  
+router.get("/yourOrder", your_Order)
 router.get("/user_account", user_account);
 
+router.get('/choiceFilling', get_choice_filling)
 router.post("/choiceFilling", choice_filling);
-
+router.post('/cancelSeat', seat_canslation)
 router.get(`/chooseLaunge/:id`, get_choose_lounge);
 
 router.post("/choosen/:id", choose_lounge_id);
@@ -123,7 +128,6 @@ router.post("/payment", async (req, res) => {
   }
 });
 
-router.get("/after_loungeBook_loggedInIndex", after_loungeBook_loggedInIndex);
 
 router.get("/item/:id", particuler_item);
 

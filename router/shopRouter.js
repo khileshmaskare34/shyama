@@ -16,7 +16,9 @@ const {shop_provider_login,
        add_items,
        particuler_item,
        add_items_id,
-       shop_provider_signout} = require('../controller/shopController')
+       shop_provider_signout,
+       show_food_at_station,
+      } = require('../controller/shopController')
 const router = express.Router();
 
 const multer = require('multer')
@@ -70,7 +72,7 @@ router.post('/delete_shop', delete_shop)
 router.get('/add_items/:id', add_items_id)
 // router.get('/item/:id', particuler_item)
 
-
+router.post('/showFoodAtStation', show_food_at_station)
 
 // Item ----------------
 
