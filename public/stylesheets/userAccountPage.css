@@ -2,8 +2,6 @@ body{
   margin: 0;
   padding: 0;
 }
-
-
 .myAccount{
   display: flex;
   justify-content: center;
@@ -93,7 +91,10 @@ span>img{
   height: 2vw;
   background-size: cover;
 }
-
-
-
-
+.contact-info{
+  padding: 2vh 2vw;
+  box-shadow: 0 0 5px 2px #dedada;
+}
+.contact-info>p{
+  margin-top: 3vh;
+}

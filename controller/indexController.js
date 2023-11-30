@@ -162,8 +162,8 @@ exports.user_account = async function (req, res, next) {
         }
 
         let orders = await orderdLounge.find({ userId: user._id })
-        // console.log("Orders: ", orders);
-        // console.log("users", user)
+        console.log("Orders: ", orders);
+        console.log("users", user)
 
         res.render('userAccountPage', { user, orders });
     } catch (error) {

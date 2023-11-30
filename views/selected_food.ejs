@@ -96,11 +96,11 @@
             <div>
               <div class="flex">
                 <p class="color">Name:</p>
-                <p><%= newOrder.userName %></p>
+                <p>newOrder.userName</p>
               </div>
               <div class="flex">
                 <p class="color">Email:</p>
-                <p><%- user.email -%></p>
+                <p>user.email </p>
               </div>
               <div class="flex">
                 <p class="color">Course Registering:</p>
@@ -120,18 +120,13 @@
               </div>
               <div class="seat-price">
                 
-                    <% var seatLength = newOrder.seats.length %> 
-                    <% for (var i = 0; i < seatLength; i++) { %>
-                        <p>
-                            <img src="/images/shofa2.jpg" alt=""><%= newOrder.seats[i] %> <span>300</span>
-                        </p>
-                    <% } %>
+                   
 
                 
                </div>
               <div class="items">
                 <p class="color">Total</p>
-                <p style="color: black"><%= seatLength * 300 %></p>
+                <p style="color: black"> seatLength * 30</p>
               </div>
             </div>
             <hr />

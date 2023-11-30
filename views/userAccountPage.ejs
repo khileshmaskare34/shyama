@@ -44,17 +44,17 @@
                 <h1> <span>Welcome</span>  <%=user.name%></h1>
 
                 <!-- Email and Phone section -->
-                <div id="contact-info">
+                <div class="contact-info">
                     <p>Email: <%=user.email%></p>
                     <p>Phone No. : <%=user.phoneNo%></p>
                 </div>
-                 <!-- Edit and Logout buttons -->
-                 <div id="buttons">
-                    <button class="button" id="editButton">Edit</button>
-                </div>
 
+                 <!-- Edit and Logout buttons -->
+                 
+                <button style="margin-top: 3vh;" class="button">Edit profile Information</button>
+        
                 <form action="/logout" method="POST">
-                    <button class="btn" >logout</button>
+                    <button style="margin-top: 3vh;" class="btn" >logout</button>
                 </form>
             </div>
             <div class="right-box">
