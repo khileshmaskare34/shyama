@@ -18,6 +18,7 @@ const {shop_provider_login,
        add_items_id,
        shop_provider_signout,
        show_food_at_station,
+       choose_shop_id,
       } = require('../controller/shopController')
 const router = express.Router();
 
@@ -66,7 +67,11 @@ router.get('/shopadminforaddingitems/:id', add_shops)
 router.post('/edit_shop', edit_shop)
 router.post('/delete_shop', delete_shop)
 
+router.post('/shop_choose/:id', choose_shop_id)
 
+router.get('/shop_choose/:id', (req, res, next)=>{
+  res.send("hello mam");
+})
 // ITEM RELETED GET ROUTES  
 
 router.get('/add_items/:id', add_items_id)

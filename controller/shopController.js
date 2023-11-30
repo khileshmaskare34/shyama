@@ -398,20 +398,20 @@ exports.show_food_at_station = async (req, res, next) => {
     var station = req.body.stationName;
 
     var shops =  await shopSchema.find({station_Name: station})
-    console.log(shops)
+    // console.log(shops)
     var items = []
 
     for(var i= 0 ; i<shops.length; i++){
 
         var its = await shop_items.find({shop_id:shops[i].shopEmail})
-        console.log(its)
+        // console.log(its)
         items.push(its)
 
 
     }
 
     let flattenedArray = items.flat();
-    console.log(items.length)
+    console.log("lucky"+items)
 
     
 
@@ -422,4 +422,20 @@ exports.show_food_at_station = async (req, res, next) => {
 
     res.render('showFoodAtStation',context)
 
+}
+
+exports.choose_shop_id = async(req, res, next)=>{
+    let shop = await shop_items.findOne({_id : req.params.id})
+    console.log("clear   "+shop);
+    // let cShop = await shopSchema.findOne({ shop_id: shop.shop_id });
+
+    // let user = await users.findOne({ email : req.cookies.user_email})
+
+    // console.log("yuout0+"+ user)
+    // context = {
+    //     'user':user,
+
+    // }
+    res.render("forParticulerFood", )
+    
 }

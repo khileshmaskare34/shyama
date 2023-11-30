@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+
+    <style>
+        body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .selected-seat{
+        width: 100%;
+        margin-bottom: 4vh;
+      }
+      .flex {
+        padding-left: 1rem;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        gap: 5px;
+        margin-top: 2vh;
+      }
+      .center-div {
+        padding: 2vh 0;
+        width: 50%; /* or you can use 100px */
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        /* background-color: whitesmoke; */
+      }
+      .color {
+        color: #13b783;
+      }
+      .items {
+        padding-left: 1rem;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        gap: 5px;
+        justify-content: space-between;
+        padding-right: 2rem;
+        margin-top: 4vh
+      }
+      .seat-price{
+        padding-left: 1rem;
+        padding-right: 2rem;
+        margin-top: 4vh;
+        /* background-color: lightpink; */
+      }
+      span{
+        margin-left: 40vw;
+      }
+      p>img{
+        height: 3vh;
+      }
+      #rzp-button1{
+        background-color: darkorange;
+        border-radius: 5px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+      }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <ul class="main-nav">
+            <li><a href="/lounge/loungeProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
+            <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
+            <li><a href="#footer-container">Contact</a></li>
+        </ul>
+        <ul class="burgger">
+            <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
+            <li><a href="#footer-container">Contact</a></li>
+        </ul>
+        <i id="menu-toggle" class="ri-menu-fold-line"></i>
+    </header>
+
+    <div class="selected-seat">
+        <h1 style="text-align: center; margin: 2rem">
+            REVIEW YOUR SEATS AND MAKE PAYMENT
+        </h1>
+        <div class="center-div">
+            <div>
+              <div class="flex">
+                <p class="color">Name:</p>
+                <p>newOrder.userName</p>
+              </div>
+              <div class="flex">
+                <p class="color">Email:</p>
+                <p>user.email </p>
+              </div>
+              <div class="flex">
+                <p class="color">Course Registering:</p>
+                <p>AL-1.0Z: Introduction to Fundamentals of Machine Learning</p>
+              </div>
+              <div class="flex">
+                <p class="color">Order ID:</p>
+                <p>5055</p>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <h3 style="text-align: center; margin-top: 2vh;">CARD SUMMARY</h3>
+              <div class="flex" style="justify-content: space-between">
+                <p class="color">Selected Seats</p>
+                <p class="color" style="padding-right: 3rem">Price</p>
+              </div>
+              <div class="seat-price">
+                
+                   
+
+                
+               </div>
+              <div class="items">
+                <p class="color">Total</p>
+                <p style="color: black"> seatLength * 30</p>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <div class="items">
+                <div class="flex">
+                  <p class="color" style="margin-left: -1rem">Transaction ID:</p>
+                  <p>order_N3C94F8EazgTH</p>
+                </div>
+                <button id="rzp-button1">Pay with Razorpay</button>
+              </div>
+      
+              <p style="padding-left: 1rem; margin-top: 4vh;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores dicta
+                exercitationem voluptatibus omnis delectus.
+              </p>
+      
+              <p style="padding-left: 1rem; margin-top: 3vh;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores dicta
+                exercitationem voluptatibus omnis delectus.
+              </p>
+      
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        document.querySelector('#rzp-button1').onclick = async function (e) {
+            e.preventDefault();
+            let response = await fetch('http://localhost:3000/payment', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    amount: 500, // Change this to the desired amount in INR
+                })
+            });
+
+            let orderData = await response.json();
+            console.log(orderData)
+
+            var options = {
+                "key": "rzp_test_05baNxbdPygtnZ", // Replace with your Razorpay API key
+                "amount": orderData.order.amount, // Use the amount from the response
+                "currency": "INR",
+                "order_id": orderData.order.id, // Use the Order ID from the response
+                "handler": function (response) {
+                  // user: req.user 
+                    alert(response.razorpay_payment_id);
+                    alert(response.razorpay_order_id);
+                    alert(response.razorpay_signature);
+                },
+            };
+
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+    </script>
+    <%- include('footer/footer.ejs') -%>
+
+    <script src="\javascripts\nav.js"></script>
+</body>
+</html>

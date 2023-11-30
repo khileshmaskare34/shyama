@@ -38,47 +38,58 @@
   <section>
     <div class="categories">
         <div class="category">
-            <img src="https://placekitten.com/200/150" alt="Burgers">
+            <img src="/images/burger.jpeg" alt="Burgers">
             <h2>Burgers</h2>
         </div>
         <div class="category">
-            <img src="https://placekitten.com/200/150" alt="Pizza">
+            <img src="/images/pizza.jpg" alt="Pizza">
             <h2>Pizza</h2>
         </div>
         <div class="category">
-            <img src="https://placekitten.com/200/150" alt="Sushi">
+            <img src="/images/sushi.webp" alt="Sushi">
             <h2>Sushi</h2>
+        </div>
+        <div class="category">
+          <img src="/images/momose.png" alt="momose">
+          <h2>Momose</h2>
+        </div>
+        <div class="category">
+          <img src="/images/Indian thali.webp" alt="Indian Thali">
+          <h2>Indian Thali</h2>
+        </div>
+        <div class="category">
+          <img src="/images/salad.jpg" alt="salad">
+          <h2>Salad</h2>
         </div>
         <!-- Add more categories as needed -->
     </div>
 </section>
 
-<div class="cart-section">
-  <div class="container">
-    <img src="https://firebasestorage.googleapis.com/v0/b/cajaregistradora-776cc.appspot.com/o/pngwing.com(2).png?alt=media&token=bde13cf8-4b17-4da9-90cf-c16db83b2e1f" />
-    <div class="content-box">
-      <h4 class="name">Veggie Burguer</h4>
-      <p>A burguer typically considered a sandwich, consisting of one or more cooked patties-usually placed inside a sliced bread roll or bun</p>
-      <p>Onion, Lettuce, Tomatoe, Patty, Cheese</p>
-      <div class="btn">
-        <h2 class="price">$ 5</h2>
-        <a href="#">Order Now</a>
-      </div>
-    </div>
+  <div class="cart-section">
+    <% if(items.length > 0){ %>
+     <% for(var i = 0; i< items[0].length; i++){ %>
+       <form action="/shop/shop_choose/<%= items[0][i]._id %>" method="post">
+        <div class="container">
+      
+          <img src="/upload/<%=items[0][i].Image%>" alt="">
+    
+        <div class="content-box">
+          <h3><%= items[0][i].item_Name  %></h3>
+          <p><%= items[0][i].description %></p>
+          <p><%= items[0][i]._id %></p>
+          <div class="btn">
+            <h4 class="price">Rs - <%= items[0][i].price %></h4>
+            <button type="submit">Order Now</button>
+          </div>
+        </div>
+       </div>
+       </form>
+     <%}} else {%>
+      <h1>non item found</h1>
+    <%}%>
+  
   </div>
-</div>
-   
-    <h1>showing food </h1>
-   
-   <% if(items.length > 0){ %>
-    <% for(var i = 0; i< items[0].length; i++){ %>
-    <h1><%= items[0][i].item_Name  %></h1>
-    <img src="/upload/<%=items[0][i].Image%>" alt="">
-
-
-    <%}} else {%>
-<h1>non item found</h1>
-        <%}%>
-    <%- include ('footer/footer.ejs') -%>
+  
+<%- include ('footer/footer.ejs') -%>
 </body>
 </html>
