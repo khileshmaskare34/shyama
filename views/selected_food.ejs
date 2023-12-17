@@ -51,6 +51,8 @@
         margin-top: 4vh
       }
       .seat-price{
+        display: flex;
+        justify-content: space-between;
         padding-left: 1rem;
         padding-right: 2rem;
         margin-top: 4vh;
@@ -96,15 +98,15 @@
             <div>
               <div class="flex">
                 <p class="color">Name:</p>
-                <p>newOrder.userName</p>
+                <p><%= user.name%></p>
               </div>
               <div class="flex">
                 <p class="color">Email:</p>
-                <p>user.email </p>
+                <p><%= user.email %> </p>
               </div>
               <div class="flex">
-                <p class="color">Course Registering:</p>
-                <p>AL-1.0Z: Introduction to Fundamentals of Machine Learning</p>
+                <p class="color">Item Shop Name:</p>
+                <p><%=Shop_D.shopName %></p>
               </div>
               <div class="flex">
                 <p class="color">Order ID:</p>
@@ -115,18 +117,20 @@
             <div>
               <h3 style="text-align: center; margin-top: 2vh;">CARD SUMMARY</h3>
               <div class="flex" style="justify-content: space-between">
-                <p class="color">Selected Seats</p>
+                <p class="color">Selected Food ITem</p>
+                <p class="color">Quantity</p>
                 <p class="color" style="padding-right: 3rem">Price</p>
               </div>
-              <div class="seat-price">
-                
-                   
+              <div class="seat-price flex">
+                <h4><%= newOrder_food.item_Name %> 
+                <img style="width: 3vw;" src="/upload/<%= item.Image %>" alt=""></h4>
+                <h4><%= newOrder_food.quantity %></h4>
+                <h4><%= newOrder_food.price %></h4>
 
-                
                </div>
               <div class="items">
                 <p class="color">Total</p>
-                <p style="color: black"> seatLength * 30</p>
+                <p style="color: black">Rs <%= newOrder_food.quantity  *  newOrder_food.price %></p>
               </div>
             </div>
             <hr />

@@ -56,8 +56,13 @@
         margin-top: 4vh;
         /* background-color: lightpink; */
       }
+      .seat-price>p{
+        display: flex;
+        justify-content: space-between;
+      }
       span{
-        margin-left: 40vw;
+        display: block;
+        /* margin-left: 40vw; */
       }
       p>img{
         height: 3vh;
@@ -70,6 +75,26 @@
         cursor: pointer;
       }
 
+          /* Responsive Styles */
+    @media only screen and (max-width: 768px) {
+      .center-div {
+        width: 90%; /* Adjust as needed for smaller screens */
+      }
+
+      span {
+        margin-left: 5vw; /* Adjust as needed */
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      .center-div {
+        width: 95%; /* Adjust as needed for even smaller screens */
+      }
+
+      span {
+        margin-left: 0; /* Reset margin for smaller screens */
+      }
+    }
     </style>
 </head>
 <body>
@@ -123,7 +148,8 @@
                     <% var seatLength = newOrder.seats.length %> 
                     <% for (var i = 0; i < seatLength; i++) { %>
                         <p>
-                            <img src="/images/shofa2.jpg" alt=""><%= newOrder.seats[i] %> <span>300</span>
+                            <img src="/images/shofa2.jpg" alt=""><%= newOrder.seats[i] %> 
+                            <span>300</span>
                         </p>
                     <% } %>
 
