@@ -1,37 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/stylesheets/forParticulerFood.css">
     <link rel="stylesheet" href="/stylesheets/nav.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
-    <link rel="stylesheet" href="/stylesheets/forParticulerFood.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
     
-</head>
-<body>
     <header class="header">
-        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
-        <!-- <nav class="navbar"> -->
-          <ul class="main-nav">
-            <li><a href="/"><i class="ri-arrow-left-fill"></i></a></li>
-            <li><a href="/">Home</a></li>
-            <li><a href="#footer-container" >Contact</a></li>
-          </ul>
-    
-          <ul class="burgger">
-            <li><a href="/">Home</a></li>
-            <li><a href="#footer-container" >Contact</a></li>
-          </ul>
-          <i id="menu-toggle" class="ri-menu-fold-line"></i>
-    
+      <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+      <ul class="main-nav">
+          <li><a href="/lounge/loungeProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
+          <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
+          <li><a href="#footer-container">Contact</a></li>
+      </ul>
+      <ul class="burgger">
+          <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
+          <li><a href="#footer-container">Contact</a></li>
+      </ul>
+      <i id="menu-toggle" class="ri-menu-fold-line"></i>
     </header>
-    <div class="main-itme">
-      <div class="left"></div>
+
+    <div class="food-item">
+      <div class="left-image ">
+            <div class="flex" style="gap: 2rem">
+              <h1 id="cart-counter"></h1>
+              <h1 id="price"></h1>
+            </div>
+            <img
+              src="/upload/<%= shop.Image%>"
+              alt="pizza"
+            />
+            <div class="image-container">
+             <div class="sub-image">
+              <!-- <img src="/images/bookSeat.png" alt=""> -->
+             </div>
+             <div class="sub-image"></div>
+             <div class="sub-image"></div>
+             <div class="sub-image"></div>
+            </div>
+            <div
+              style="text-align: center; margin-bottom: 2rem; margin-top: 2vh"
+            >
+              <button>ADD TO CARD</button>
+              
+            </div>
+      </div>
+
+      <div class="food-details">
+        <form action="/shop/selected_food/<%= shop._id %>" method="post">
+         <div class="details-box">
+          <p>somthing truthless right your way/ fbakslfbg /</p>
+          <h2 style="margin-bottom: 2vh; font-size: 2vw;"><%= shop.item_Name %>(with extra cizz and tasty)</h2>
+
+          <button class="fast-d">fast Delivery</button>
+          <h3 style="color: green; margin-top: 2vh; margin-bottom: 2vh;">View all item in <%= Shop_D.shopName%>....</h3>
+          
+          <p><%= shop.description %></p>
+       
+          <div  class="flex">
+            <p style="color: green">rating-review :</p>
+            <p style="color: goldenrod; font-size: 1.2rem">*</p>
+          </div>
+
+          <div class="price-box">
+            <div class="price">Rs <%= shop.price%></div>
+            <form class="price" action="">
+                <label for="qty">Quantity:</label>
+                <input type="number" name="qty" id="qty" min="1" max="100" step="1" value="1">
+            </form>	
+          </div>
+          <div>
+            <button style="margin-top: 4vh;">BUY NOW</button>
+          </div>
+         </div>
+        </form>
+      </div>
     </div>
 
+    <div class="cart-section">
+      <% if(shopitems.length > 0){ %>
+       <% for(var i = 0; i< shopitems[0].length; i++){ %>
+         <form action="/shop/shop_choose/<%= shopitems[0][i]._id %>" method="post">
+          <div class="container">
+        
+            <img src="/upload/<%=shopitems[0][i].Image%>" alt="">
+      
+          <div class="content-box">
+            <h3><%= shopitems[0][i].item_Name  %></h3>
+            <p><%= shopitems[0][i].description %></p>
+            <p><%= shopitems[0][i]._id %></p>
+            <div class="btn">
+              <h4 class="price">Rs - <%= shopitems[0][i].price %></h4>
+              <button type="submit">Order Now</button>
+            </div>
+          </div>
+         </div>
+         </form>
+       <%}} else {%>
+        <h1>Item not found in this location</h1>
+      <%}%>
+    
+    </div>
+       
     <%- include ('footer/footer.ejs') -%>
-</body>
+    <script src="/javascripts/script.js"></script>
+  </body>
 </html>

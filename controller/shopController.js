@@ -381,61 +381,76 @@ exports.food_order = async (req, res, next) => {
 }
 
 exports.particuler_item = async (req, res, next) => {
-    
     var item = await shop_items.findOne({ _id: req.params.id });
-
     var shop_name = await shopRegistration.findOne({  });
-
-
     res.render('foodSelection', { item, shop_name });
-
 }
 
-
-
 exports.show_food_at_station = async (req, res, next) => {
-    // var shops = []
     var station = req.body.stationName;
-
     var shops =  await shopSchema.find({station_Name: station})
-    // console.log(shops)
     var items = []
-
     for(var i= 0 ; i<shops.length; i++){
-
         var its = await shop_items.find({shop_id:shops[i].shopEmail})
-        // console.log(its)
         items.push(its)
-
-
     }
-
     let flattenedArray = items.flat();
-    console.log("lucky"+items)
-
-    
-
     context= {
         'items':items
     }
-
-
     res.render('showFoodAtStation',context)
-
 }
 
 exports.choose_shop_id = async(req, res, next)=>{
     let shop = await shop_items.findOne({_id : req.params.id})
-    console.log("clear   "+shop);
-    // let cShop = await shopSchema.findOne({ shop_id: shop.shop_id });
+    let Shop_D = await shopSchema.findOne({ shop_id: shop.shop_id });
+    var shopitems = []
+    for(var i= 0 ; i<Shop_D.length; i++){
+        var itss = await shop_items.find({shop_id:Shop_D[i].shopEmail})
+        console.log(itss);
+        shopitems.push(itss)
+    }
+    console.log(shopitems)
+    let flattenedArray = shopitems.flat();
+    res.render("forParticulerFood", {shop, Shop_D, shopitems} )
+}
+exports.choose_shop_id = async(req, res, next) => {
+    try {
+        let shop = await shop_items.findOne({ _id: req.params.id });
+        let Shop_D = await shopSchema.findOne({ shop_id: shop.shop_id });
+        var shopitems = [];
 
-    // let user = await users.findOne({ email : req.cookies.user_email})
+        for (var i = 0; i < Shop_D.length; i++) {
+            var itss = await shop_items.find({ shop_id: Shop_D[i].shopEmail });
+            console.log(itss);
+            shopitems.push(itss);
+        }
 
-    // console.log("yuout0+"+ user)
-    // context = {
-    //     'user':user,
+        let flattenedArray = shopitems.flat();
+        res.render("forParticulerFood", { shop, Shop_D, shopitems });
+    } catch (error) {
+        console.error(error);
+        // Handle the error and send an appropriate response to the client
+        res.status(500).send("Internal Server Error");
+    }
+};
 
-    // }
-    res.render("forParticulerFood", )
-    
+exports.selected_item_id = async(req, res, next)=>{
+    let item = await shop_items.findOne({_id : req.params.id})
+    let user = await users.findOne({email: req.cookies.user_email})
+    let Shop_D = await shopSchema.findOne({ shop_id: item.shop_id });
+
+    let quantity = req.body.qty
+    var newOrder_food = new orderItem({
+        item_Name:item.item_Name,
+        item_id:item._id,
+        price:item.price,
+        shop_id:item.shop_id,
+        user_id:user._id,
+        quantity:quantity
+    })
+    newOrder_food.save().then(function(dets){
+        res.cookie('food_order_by_user', newOrder_food.item_id, { httpOnly: true, maxAge: 1.728e8 });
+        res.render("selected_food", {newOrder_food,user, Shop_D, item})
+    })
 }

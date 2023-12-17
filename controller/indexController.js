@@ -286,7 +286,6 @@ exports.choose_lounge_id = async(req, res)=>{
       userName: user.name,
       loungeId: launge._id,
       userId: user._id,
-      
       seats: seat_1,
       expireTime: myDate,
     })

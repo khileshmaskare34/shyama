@@ -59,7 +59,8 @@
       justify-content: center;
     }
 
-    .skills span {
+    .skills a {
+      text-decoration: none;
       display: inline-block;
       color: #201d1d;
       font-size: 15px;
