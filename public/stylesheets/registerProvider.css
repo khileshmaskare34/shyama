@@ -67,6 +67,13 @@ body, h3, p, label {
     border: 1px solid #ccc;
     font-size: 16px;
   }
+  .registration-form #option{
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    /* background-color: red; */
+  }
   
   button {
     background-color: #13b783;

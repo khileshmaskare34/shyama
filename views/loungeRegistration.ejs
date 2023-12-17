@@ -194,13 +194,11 @@
   
         <div class="form-group d-flex flex-column">
           <label for="phone">Station Name</label>
-          <!-- <input type="tel" id="phone" placeholder="station name" name="stationLocation" > -->
-        <select name="stationLocation" id="phone" type="text">
-
-          <% stationsArray.forEach(station => { %>
-            <option value="<%=station%>"><%= station %></option>
-          <% }); %>
-        </select>
+          <select name="stationLocation" id="option" type="text">
+            <% stationsArray.forEach(station => { %>
+              <option class="option" value="<%=station%>"><%= station %></option>
+            <% }); %>
+          </select>
         
         </div>
 

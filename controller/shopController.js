@@ -7,6 +7,10 @@ const loungeSchema = require('../models/lounges/loungeSchema');
 const users = require('../models/users/users')
 const orderItem = require('../models/shops/orderdFood')
 const jwt = require('jsonwebtoken');
+const fs = require('fs')
+const rawData = fs.readFileSync('stations.json');
+const stationsArray = JSON.parse(rawData);
+
 
 exports.shop_provider_login = async (req, res, next) => {
     try {
@@ -197,7 +201,7 @@ exports.get_shop_reg = async (req, res) => {
             return res.status(404).send("Shop provider not found");
         }
 
-        res.render('shopRegistration', { shopProvider, shopUser });
+        res.render('shopRegistration', { shopProvider, shopUser, stationsArray });
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
@@ -211,7 +215,7 @@ exports.shop_registration = async (req, res, next) => {
             shopEmail: req.body.shopEmail,
             shopPhoneNo: req.body.shopPhoneNo,
             shopProviderId: req.body.shopProviderId,
-            station_Name: req.body.station
+            station_Name: req.body.stationLocation,
         });
 
         var email = req.cookies.shopProvider_email;

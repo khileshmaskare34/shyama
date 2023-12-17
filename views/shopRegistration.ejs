@@ -52,9 +52,15 @@
           <label for="phone">Phone Number</label>
           <input type="tel" id="phone" name="shopPhoneNo" placeholder="Shop Phone No" >
         </div>
+        
         <div class="form-group d-flex flex-column">
-          <label for="station">Station Name </label>
-          <input type="text" id="station" name="station" placeholder="select registerd Station Name" >
+          <label for="phone">Station Name</label>
+          <select name="stationLocation" id="option" type="text">
+            <% stationsArray.forEach(station => { %>
+              <option class="option" value="<%=station%>"><%= station %></option>
+            <% }); %>
+          </select>
+        
         </div>
 
         <input type="text" name="shopProviderId" value="<%= shopUser._id%>" style="visibility: hidden;">

@@ -123,6 +123,9 @@ button a {
     body {
         font-size: 14px; /* Adjust font size for smaller screens */
     }
+    .upperform{
+        flex-direction: column;
+    }
 
     .inputForm, .seatStructure, .displayerBoxes {
         width: 90%; /* Reduce width for smaller screens */

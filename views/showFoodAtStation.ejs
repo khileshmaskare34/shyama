@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
     <link rel="stylesheet" href="/stylesheets/showFoodAtStation.css">
 
@@ -16,7 +17,6 @@
 
   <header class="header">
         <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
-        <!-- <nav class="navbar"> -->
           <ul class="main-nav">
             <li><a href="/"><i class="ri-arrow-left-fill"></i></a></li>
             <li><a href="/">Home</a></li>
@@ -28,8 +28,9 @@
             <li><a href="#footer-container" >Contact</a></li>
           </ul>
           <i id="menu-toggle" class="ri-menu-fold-line"></i>
-    
   </header>
+
+ <div class="show-food">
 
   <div class="top_home">
     <h1><span>Food </span> Ordering</h1>
@@ -63,7 +64,7 @@
         </div>
         <!-- Add more categories as needed -->
     </div>
-</section>
+  </section>
 
   <div class="cart-section">
     <% if(items.length > 0){ %>
@@ -89,6 +90,8 @@
     <%}%>
   
   </div>
+  
+ </div>
   
 <%- include ('footer/footer.ejs') -%>
 </body>

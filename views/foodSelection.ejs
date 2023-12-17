@@ -17,9 +17,12 @@
     box-sizing: border-box;  
     overflow-x: hidden;  
    }   
+
+
    .food-section{
+    /* padding-top: 5vh; */
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     /* background-color: rgb(228, 196, 14); */
    }
    h1{
@@ -28,25 +31,26 @@
    }
    .food{
     width: 100%;
-    height: 95%;
+    /* height: 95%; */
     /* background-color: lightseagreen; */
     overflow-y: hidden;
     overflow-x: auto;
    }
-   .top{
+   .food-section .top{
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;    
     width: 100%;
-    height: 60%;
-    /* background-color: rgb(255, 248, 240); */
+    padding: 5vh 5vw;
+    /* height: 60vh; */
+    /* background-color: rgb(205, 134, 52); */
    }
    .f-bottom{
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 40%;
+    /* height: 40vh; */
     padding-left: 2vw;
     position: relative;
     overflow-x: auto;
@@ -54,18 +58,20 @@
     scrollbar-width: thin;
     scrollbar-color: #333 #ccc;
     cursor: pointer;
+    /* background-color: rgb(198, 54, 54); */
    }
    .food-text{
     position: relative;
-    padding: 10px 10px;
+    padding: 20px 20px;
     width: 50%;
-    height: 70%;
+    /* height: 40vh; */
     box-shadow: 0px 0px 15px 2px rgb(186, 182, 182); 
+    /* background-color: yellow; */
    }
-   .food-text::after{
+   /* .food-text::after{
     content: "";
-    width: 200px;
-    height: 200px;
+    width: 15vw;
+    height: 15vw;
     position: absolute;
     top: -20%;
     right: -20%;
@@ -73,7 +79,7 @@
     animation: Ani-circle 200s linear infinite;
     background-image: url("https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg");
     background-size: cover;
-   }
+   } */
    @keyframes Ani-circle {
      0%{
         transform: rotate(0deg);
@@ -89,14 +95,17 @@
    }
    .food-text>h3{
     width: 90%;
-    font-size: 4vw;
+    font-size: 50px;
     font-weight: 500;
    }
    .food-text>p{
     margin-top: 1vh;
     margin-bottom: 2vh;
    }
-  
+   .img img{
+    margin-left: 10vw;
+    width: 400px;
+   }
   
    .box1>img{
     width: 100%;
@@ -105,7 +114,7 @@
    }
    .box1>p{
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 20px;
    }
 
 
@@ -162,8 +171,10 @@ select{
   position: relative;
   flex: 0 0 auto;
   width: 15vw;
-  height: 100%;
+  height: 30vh;
+  /* background-color: red; */
 }
+
 
 .f-bottom::-webkit-scrollbar {
   width: 5px;
@@ -171,7 +182,56 @@ select{
   transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
 }
 
+/* Tablet styles */
+@media only screen and (max-width: 768px) {
+  .top {
+    flex-direction: column;
+    height: auto;
+  }
 
+  .food-text {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .img {
+    margin-top: 20px;
+  }
+
+  .product-list .box1 {
+    width: 30vw;
+  }
+}
+
+/* Phone styles */
+@media only screen and (max-width: 480px) {
+  .food-text {
+    width: 90%;
+  }
+
+  .product-list .box1 {
+    width: 45vw;
+  }
+  .img img{
+    width: 350px;
+   }
+
+
+}
+
+/* General styles for larger screens */
+/* Add more styles for larger screens as needed */
+@media only screen and (min-width: 1200px) {
+  .food-text {
+    font-size: 18px;
+  }
+
+  .product-list .box1 {
+    width: 20vw;
+  }
+}
+
+/* Additional responsive styles can be added for other devices and screen sizes */
 </style>
 </head>
 <body>
@@ -199,7 +259,7 @@ select{
                             <% } %>
                        
                         </select>
-                        <button type="submit" >Explore</button>
+                        <button type="submit">Explore</button>
                     </form> 
                     
                     </div>

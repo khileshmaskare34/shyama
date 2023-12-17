@@ -1,4 +1,17 @@
-.top_home{
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body{
+  width: 100%;
+}
+.show-food{
+  width: 100%;
+}
+
+.show-food .top_home{
+  width: 100%;
   background-color: #333;
   color: white;
   padding: 40px;
@@ -32,7 +45,7 @@ section {
 }
 
 .category {
-    flex: 1 0 200px;
+    flex: 1 0 50px;
     background-color: #fff;
     /* padding: 20px; */
     margin: 10px;
@@ -43,7 +56,7 @@ section {
 }        
 
 .category img {
-    max-width: 100%;
+    width: 150px;
     height: 20vh;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -52,15 +65,15 @@ section {
 .category:hover {
     transform: scale(1.05);
 }        
-.cart-section {      
+.cart-section {     
   display: flex;  
   gap: 4vw;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }        
  
 .container {
@@ -78,6 +91,7 @@ section {
 .container img {
   z-index: 1;
   width: 100%;
+  height: 25vh;
   /* padding: 35px; */
 }
 
@@ -138,4 +152,37 @@ section {
   font-weight: 700;
   background-color: #f9b02d;
   border-radius: 7px;
+}
+
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  .top_home{
+
+  }
+  .categories{
+
+  }
+  .category{
+
+  }
+  .category img {
+    width: 90px;
+    height: 13vh;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .category>h2{
+    font-size: 10px;
+  }  
+  .cart-section{
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .category img {
+    width: 80px;
+    height: 10vh;
+  }
 }

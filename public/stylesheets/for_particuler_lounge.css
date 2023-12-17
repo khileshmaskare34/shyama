@@ -101,3 +101,15 @@ h3{
 span{
     color: red;
 }
+
+@media only screen and (max-width:768px) {
+    .page .box{
+        flex-direction: column;
+    }
+    .box .booked{
+        width: 100%;
+    }
+    .box .not_booked{
+        width: 100%;
+    }
+}
