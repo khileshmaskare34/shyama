@@ -68,41 +68,32 @@ input{
   padding: 0 1vw;
   margin-top: 0.7vw;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1vw;
 }
 
 .choice select,
 .choice input {
   flex: 1 1 10%; 
-  padding: 10px;
+  padding: .5vw;
   margin-bottom: 10px;
   margin-right: 2vw;
   border: 2px solid #e3dcdc;
-  font-size: 15px;
+  font-size: 1vw;
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
 }
 
-.choice button {
+.choice #search-btn{
   background-color: #13b783;
   color: #fff;
-  padding: 0px 30px;
+  padding: 0vh 1.5vw;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 20px;
-  transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
+  font-size: 1.5vw;
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
 }
-
-.choice button:hover {
-  background-color:  #15af4d;
-  scale: 1.01;
-}
-
-
-
 
 @media (max-width: 992px) {
   .choice {
@@ -111,6 +102,7 @@ input{
   }
   .choice label {
     flex: 1 1 100%; 
+    font-size: 10px;
   }
   .choice button {
     flex: 0 0 auto;
@@ -118,18 +110,19 @@ input{
   .choice select,
 .choice input {
    flex: 1 1 100%; 
+   font-size: 15px;
 }
 .choice label{
   font-size: 3.3vw;
 }
-.choice button {
+.choice #search-btn {
   background-color: #61e3ba;
   color: #fff;
   padding: 10px 40px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
 }
 .main_img{
