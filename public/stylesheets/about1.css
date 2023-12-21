@@ -134,12 +134,12 @@
           .about-content h1 {
             color: #333;
             /* left: 5%; */
-            font-size: 24px; /* Adjusted font size for mobile */
+            font-size: 24px; 
             text-align: center; /* Centered on mobile */
             margin-bottom: 10px; /* Adjusted margin for mobile */
             /* margin-right: 1  0vw; */
-            width: 30vw;
-            margin-left: 12vw;
+            /* width: 30vw; */
+            /* margin-left: 12vw; */
           
 
           }
@@ -157,13 +157,14 @@
             justify-content: center;
           }
           
-          .skills span {
+          .skills a {
             display: inline-block;
             color: #201d1d;
             font-weight: bold;
             border-radius: 5px;
             margin: 0 5px; /* Adjusted margin for mobile */
             cursor: pointer;
+            font-size: 12px;
             transition: background-color 0.3s ease;
           }
           

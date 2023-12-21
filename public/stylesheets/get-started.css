@@ -58,7 +58,7 @@ font-size: 3.5vw;
 }
 
 .get-started-sign{
-    height: 58vh;
+    /* height: 58vh; */
     width: 41vw;
     padding: 2.5vw;
 }
@@ -123,7 +123,7 @@ font-size: 3.5vw;
     .get-started{
         /* background-color: red; */
         width: 100vw;
-        height: 103vh;
+        /* height: 103vh; */
         /* text-align: center; */
         display: flex;
         /* position: absolute; */
@@ -172,11 +172,16 @@ font-size: 3.5vw;
     }
     
     .get-started-sign{
-        height: 30vh;
-        width: 60vw;
-        padding: 0.5vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* height: 30vh; */
+        width: 100%;
+        /* padding: 0.5vw; */
         /* background-color:  #f3eded; */
-        margin-left: 10vw;
+        /* margin-left: 10vw; */
+        margin-top: 2vh;
         border: 0.1px solid rgba(212, 220, 216, 0.788);
     }
     
@@ -231,12 +236,12 @@ font-size: 3.5vw;
     /* CSS rules specific to iPad Air */
     .get-started {
       /* Your styles for .get-started on iPad Air */
-       height: 100vh;
+       /* height: 100vh; */
     }
     
     
     .get-started-sign{
-    height:34vh ;
+    /* height:34vh ; */
     }
     
     /* Styles for other elements on iPad Air */
