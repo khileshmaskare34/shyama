@@ -16,10 +16,12 @@
 </head>
 <body>
     <header class="header">
-        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <a href="/">
+            <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+          </a> 
         <!-- <nav class="navbar"> -->
           <ul class="main-nav">
-            <li><a href="/shop/shop_provider_admin"><i class="ri-arrow-left-fill"></i></a></li>
+            <li><a href="/shop_provider_admin"><i class="ri-arrow-left-fill"></i></a></li>
             <li><a href="/">Home</a></li>
             <li><a href="#footer-container" >Contact</a></li>
           </ul>
@@ -30,10 +32,11 @@
           </ul>
           <i id="menu-toggle" class="ri-menu-fold-line"></i>
     
-        </header>
+    </header>
+
     <div id="admin">
      <h1>Your Items</h1>
-     <a href="/shop/add_items/<%= perticuler_shop._id %>"><button>Add More Items</button></a>
+     <a href="/add_items/<%= perticuler_shop._id %>"><button>Add More Items</button></a>
 
      <div class="container">
         <% for(var i = 0; i < items.length; i++) { %>
@@ -47,17 +50,17 @@
                     <button class="small_btn" onclick="toggleEditForm('<%= items[i]._id %>')">Edit Item</button>
                 </div>  
         
-                <form action="/shop/delete_item" method="post">
+                <form action="/delete_item" method="post">
                     <input type="text" name="itemId_for_delete" value="<%= items[i]._id %>" style="visibility: hidden; display: none;">
                 <button class="small_btn delete" type="submit"> Delete Item</button>
                 </form>
 
-                <form id="edit-form-<%= items[i]._id %>" class="edit-form" action="/shop/edit_item" method="post" enctype="multipart/form-data">
+                <form id="edit-form-<%= items[i]._id %>" class="edit-form" action="/edit_item" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="itemId_for_delete" value="<%= items[i]._id %>">
-                    <input type="text" name="item_Name" placeholder="<%= items[i].item_Name %>">
-                    <input type="text" name="description" placeholder="<%= items[i].description %>">
-                    <input type="file" name="Image" placeholder="<%= items[i].Image %>">
-                    <input type="text" name="price" placeholder="<%= items[i].price %>">
+                    <input type="text" name="item_Name" value="<%= items[i].item_Name %>">
+                    <input type="text" name="description" value="<%= items[i].description %>">
+                    <input type="file" name="Image" value="<%= items[i].Image %>" required>
+                    <input type="text" name="price" value="<%= items[i].price %>">
                     <input type="hidden" name="shop_id" value="<%= items[i].shop_id %>">
                     <button class="small_btn" type="submit">Save Changes</button>
                 </form>
@@ -65,6 +68,10 @@
             </div>
         <% } %>
      </div>
+    </div>
+
+    <div class="booked-items">
+        
     </div>
 
     <script>

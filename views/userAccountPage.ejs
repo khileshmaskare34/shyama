@@ -13,13 +13,17 @@
 <body>
 
     <header class="header">
-                <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        <a href="/">
+          <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+        </a>  
                   <ul class="main-nav">
                     <li><a href="/user_signin">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#footer-container" >Contact</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="/user_account" id="contect">account</a></li>
+                    <li><a href="/user_account" >
+                        <i class="ri-account-circle-fill"></i>
+                      </a></li>
                   </ul>
           
                   <ul class="burgger">
@@ -27,7 +31,9 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#footer-container" >Contact</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="/user_account" id="contect">account</a></li>
+                    <li><a href="/user_account" >
+                        <i class="ri-account-circle-fill"></i>
+                      </a></li>
                   </ul>
                   <i id="menu-toggle" class="ri-menu-fold-line"></i>
           
@@ -57,28 +63,32 @@
                     <button style="margin-top: 3vh;" class="btn" >logout</button>
                 </form>
             </div>
+
             <div class="right-box">
                
                 <div class="details-seats">
-                    <h2>Lounge Seats Details</h2>
-                    <h5>check your canfirm seats<a href="/yourOrder"><span>check here
-                        <img src="/images/shofa2.jpg" alt="">
-                    </span></a></h5>
+                    <h2>Booked Seats Details</h2>
+                      <%  for(var i =0;i< orders.length;i++){  %>
+                        <%  for(var j = 0;j < orders[i].seats.length;j++){ %>
+                            <div class="booked_seats">
+                                <div class="booked_seat_img">
+                                        <img src="/images/shofa1.png" alt="">
+                                </div>
+                                <h3><%= orders[i].seats[j] %> </h3>
+                                <form action="/cancelBookedSeat/<%= orders[i]._id %>" method="post">
+                                <input type="hidden" name="order_id" value="<%=orders[i]._id%>">
+                                <input type="hidden" name="seat_index" value="<%= j %>"> 
 
-                    <h5>check your cancel seats<a href="/yourOrder"><span>check here
-                        <img src="/images/cancel seat.jpg" alt="">
-                    </span></a></h5>
+                                <!-- <button type="submit" class="booked_seat_delete"><i class="ri-delete-bin-fill"></i></button> -->
+                                </form>
+                            </div>
+                         <%  }  %>
+                     <%  }   %>
                 </div>
 
                 <div class="details-foods">
                     <h2>Food Detatils</h2>
-                    <h5>check your ordered items<a href="/yourOrder"><span>check here
-                        <img src="/images/burger.jpeg" alt="">
-                    </span></a></h5>
-
-                    <h5>check your cancel items<a href="/yourOrder"><span>check here
-                        <img src="/images/cancel food.png" alt="">
-                    </span></a></h5>
+                   
                 </div>
             </div>
            </div>

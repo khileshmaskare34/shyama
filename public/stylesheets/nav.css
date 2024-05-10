@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     font-family: flaticon;
 }
@@ -64,10 +64,14 @@
     background-color: #000;
     color: #fff;
 }
-@media screen and (max-width: 650px) {
-    .burgger,
-    .main-nav li,
+@media screen and (max-width: 1030px) {
+    /* .burgger, */
+    /* .main-nav li,
     .sign_out_res {
+        display: none;
+    } */
+
+    .main-nav{
         display: none;
     }
     #menu-toggle,
@@ -75,11 +79,12 @@
         top: 20%;
         position: absolute;
     }
-    #menu-toggle,
+
+    /* #menu-toggle,
     .burgger,
     .header .logo {
         position: absolute;
-    }
+    } */
     .burgger {
         padding: 20px 30px;
         justify-content: space-around;
@@ -95,7 +100,7 @@
         color: #000;
         font-size: 20px;
     }
-    .burgg {
+    /* .burgg {
         position: absolute;
         top: 50%;
         right: 2%;
@@ -103,7 +108,7 @@
         display: inline;
         border: none;
         color: #d2390f;
-    }
+    } */
     
     #menu-toggle {
         display: initial;
@@ -111,14 +116,14 @@
         font-size: 20px;
         z-index: 9999;
     }
-    .header {
+    /* .header {
         height: 10vh;
-    }
-    .header .logo {
+    } */
+    /* .header .logo {
         display: flex;
         top: 2%;
         left: 3%;
-    }
+    } */
 }
 
 

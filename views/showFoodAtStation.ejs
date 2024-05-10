@@ -69,7 +69,7 @@
   <div class="cart-section">
     <% if(items.length > 0){ %>
      <% for(var i = 0; i< items[0].length; i++){ %>
-       <form action="/shop/shop_choose/<%= items[0][i]._id %>" method="post">
+       <form action="/shop_choose/<%= items[0][i]._id %>" method="post">
         <div class="container">
       
           <img src="/upload/<%=items[0][i].Image%>" alt="">

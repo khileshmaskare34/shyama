@@ -21,10 +21,10 @@
         <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
         <!-- <nav class="navbar"> -->
           <ul class="main-nav">
-            <li><a href="/lounge/loungeProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
+            <li><a href="/loungeProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
             <li><a href="/">Home</a></li>
             <li><a href="#footer-container" >Contact</a></li>
-            <form action="/lounge/logout-lounge" method="POST">
+            <form action="/logout-lounge" method="POST">
                 <button class="sign_out_res btn" >logout</button>
             </form>
           </ul>
@@ -32,7 +32,7 @@
           <ul class="burgger">
             <li><a href="/">Home</a></li>
             <li><a href="#footer-container" >Contact</a></li>
-            <form action="/lounge/logout-lounge" method="POST">
+            <form action="/logout-lounge" method="POST">
                 <button class="sign_out btn" >logout</button>
             </form>
           </ul>
@@ -44,7 +44,7 @@
 
         <h1>Welcome,<span class="username"><%= LoungeUser.name %></span> </h1>
 
-        <button><a href="/lounge/loungeRegistration">Add New Lounge</a></button>
+        <button><a href="/loungeRegistration">Add New Lounge</a></button>
 
         <!-- <h2>Your Registered Lounges</h2> -->
     <div class="container " >
@@ -53,14 +53,14 @@
 
             <div class="owner_name">
                 <h1><%= his_launges[i].loungeName %></h1>
-                <a class="check_seat" href="/lounge/laungeadminforaddingitems/<%= his_launges[i]._id %>">Check Seats ☑️</a>
+                <a class="check_seat" href="/laungeadminforaddingitems/<%= his_launges[i]._id %>">Check Seats ☑️</a>
             </div>
 
             <p>Owner: <%= LoungeUser.name %></p>
             <p>No. of Seats: <%= his_launges[i].noOfSeats %></p>
             <p>Station: <%= his_launges[i].stationLocation %></p>
             
-            <form action="/lounge/edit_lounge" method="POST">
+            <form action="/edit_lounge" method="POST">
 
                 <input type="text" name="loungeId_for_delete" value="<%= his_launges[i]._id %>"  style="visibility: hidden; display: none; ">
 
@@ -77,7 +77,7 @@
                 <button class="small_btn" type="submit">Edit Lounge Infom</button>
             </form>
 
-            <form action="/lounge/delete_lounge" method="POST">
+            <form action="/delete_lounge" method="POST">
                 <input type="text" name="loungeId_for_delete" value="<%= his_launges[i]._id %>" style="visibility: hidden; display: none; ">
                 <button class="small_btn delete" type="submit">Delete Lounge</button>
             </form>

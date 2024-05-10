@@ -47,7 +47,9 @@ input[type="checkbox"] + label {
 #seatsBlock td {
     padding: 5px;
 }
-
+img{
+    width: 5vw;
+}
 .screen {
     background-color: #333;
     color: #fff;

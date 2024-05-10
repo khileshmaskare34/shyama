@@ -14,38 +14,22 @@
    <form action="/choiceFilling" class="choice" method="post">
 
     <label class="lable-function" for="station">Choose Station:</label>
-
     <select id="station" name="stationName">
       <% for(var i=0;i< station.length; i++){ %>
-        <option value="<%= station[i] %>" name="<%= station[i] %>" ><%= station[i] %></option>
+        <option value="<%= station[i] %>" name="<%= station[i] %>" required ><%= station[i] %></option>
       <% } %>
     </select>
 
     <label for="check-in-time" class="lable-function" >Check-in Time:</label>
-    <input type="datetime-local" id="check-in-time" name="checkIn">
+    <input type="datetime-local" id="check-in-time" name="checkIn" required>
 
     <label for="check-out-time" class="lable-function" > Check-out Time:</label>
-    <input type="number" placeholder="hours" name="hours" id="check-out-time">
+    <input type="number" placeholder="hours" name="hours" id="check-out-time" required>
   
 
-    <button id="search-btn" type="submit">Book my seat</button>
+    <button type="submit">Book my seat</button>
 
    </form> 
-   <div class="main_img"> 
-    
-    <div class="box">
-      <img src="/images/train.jpg" alt="">
-      <h2> Choose station</h2>
-    </div>
-    <div class="box">
-      <img src="/images/calender.jpg" alt="">
-      <h2>Check Time</h2>
-    </div>
-    <div class="box">
-      <img src="https://rinps.org/content/images/site/BookSeat.jpg" alt="">
-      <h2>Book Seat</h2>
-    </div>
-   </div>
   </div>
 </body>
 </html>

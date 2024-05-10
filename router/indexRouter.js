@@ -22,6 +22,9 @@ const {
   get_choice_filling
 } = require("../controller/indexController");
 
+const { checkTokenExpiration } = require('../middlewears/auth'); // Import the middleware
+
+
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const schedule = require("node-schedule");
@@ -77,14 +80,19 @@ router.get("/get-started", (req, res, next) => {
 });
 
 router.get("/user_signin", (req, res, next) => {
-  res.render("signin", { error: "" });
+  let originalUrl = req.query.originalUrl || '/';
+  originalUrl = decodeURIComponent(originalUrl); // Decode the URL
+
+  console.log("Original URL:", originalUrl);
+
+  res.render("signin", { error: "", originalUrl});
 });
 router.post("/user_signin", user_signin);
 
 router.get("/user_signup", (req, res, next) => {
   res.render("signup");
 });
-router.post("/user_signup", user_signup);
+router.post("/user_signup",  user_signup);
 
 router.post("/logout", user_signout);
 
@@ -97,7 +105,7 @@ router.get("/user_account", user_account);
 
 router.get('/choiceFilling', get_choice_filling)
 router.post("/choiceFilling", choice_filling);
-router.post('/cancelSeat', seat_canslation)
+router.post('/cancelBookedSeat/:id', seat_canslation)
 router.get(`/chooseLaunge/:id`, get_choose_lounge);
 
 router.post("/choosen/:id", choose_lounge_id);

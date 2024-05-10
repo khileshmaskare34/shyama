@@ -47,7 +47,7 @@ body, h3, p, label {
 }
 
 .form-container>h2{
-  font-size: 40px;
+  font-size: 1.8rem;
 }
 
 .login-form {
@@ -66,14 +66,15 @@ body, h3, p, label {
   display: block;
   text-align: left;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .login-form input {
   padding: 12px;
   width: 100%;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 1rem;
+  border-radius: 5px;
 }
 
 button {
@@ -85,7 +86,7 @@ button {
   border-radius: 4px;
   width: 100%;
   margin-top: 15px;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 button:hover {
@@ -98,7 +99,7 @@ a{
 
 .toggle-form-login {
   margin-top: 15px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 

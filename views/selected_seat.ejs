@@ -100,10 +100,12 @@
 <body>
 
     <header class="header">
+      <a href="/">
         <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+      </a>
         <ul class="main-nav">
             <li><a href="/lounge/loungeProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
-            <li><a href="/after_loungeBook_loggedInIndex">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#footer-container">Contact</a></li>
         </ul>
         <ul class="burgger">
@@ -128,12 +130,16 @@
                 <p><%- user.email -%></p>
               </div>
               <div class="flex">
-                <p class="color">Course Registering:</p>
-                <p>AL-1.0Z: Introduction to Fundamentals of Machine Learning</p>
+                <p class="color">lounge Name:</p>
+                <p><%= launge.loungeName %></p>
               </div>
               <div class="flex">
-                <p class="color">Order ID:</p>
-                <p>5055</p>
+                <p class="color">Lounge Phone No:</p>
+                <p><%- launge.loungePhoneNo -%></p>
+              </div>
+              <div class="flex">
+                <p class="color">Lounge Station:</p>
+                <p><%- launge.stationLocation -%></p>
               </div>
             </div>
             <hr />
@@ -163,23 +169,10 @@
             <hr />
             <div>
               <div class="items">
-                <div class="flex">
-                  <p class="color" style="margin-left: -1rem">Transaction ID:</p>
-                  <p>order_N3C94F8EazgTH</p>
-                </div>
                 <button id="rzp-button1">Pay with Razorpay</button>
               </div>
       
-              <p style="padding-left: 1rem; margin-top: 4vh;">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores dicta
-                exercitationem voluptatibus omnis delectus.
-              </p>
-      
-              <p style="padding-left: 1rem; margin-top: 3vh;">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores dicta
-                exercitationem voluptatibus omnis delectus.
-              </p>
-      
+             
             </div>
         </div>
     </div>

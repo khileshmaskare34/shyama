@@ -59,7 +59,7 @@ exports.lounge_provider_register = async (req, res, next) => {
         const savedProvider = await newProvider.save();
 
         res.cookie('loungeProvider_email', req.body.email);
-        res.redirect('/lounge/loungeRegistration');
+        res.redirect('/loungeRegistration');
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
@@ -105,7 +105,7 @@ exports.lounge_registration = async (req, res, next) => {
         await newLounge.save();
         // console.log("luck" + newLounge)
 
-        res.redirect("/lounge/lounge_provider_admin");
+        res.redirect("/lounge_provider_admin");
         
     } catch (error) {
       
@@ -146,7 +146,7 @@ exports.delete_lounge = async (req, res, next) => {
     try {
         await loungeSchema.findOneAndDelete({ _id: req.body.loungeId_for_delete });
         console.log('deleted');
-        res.redirect('/lounge/lounge_provider_admin');
+        res.redirect('/lounge_provider_admin');
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
@@ -170,7 +170,7 @@ exports.edit_lounge = async (req, res, next) => {
         
         console.log("edit_Loun" + edit_lounge);
         console.log('updated');
-        res.redirect('/lounge/lounge_provider_admin');
+        res.redirect('/lounge_provider_admin');
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");

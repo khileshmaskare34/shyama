@@ -8,44 +8,40 @@
     }
 
     .about-section {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 100px 40px;
+      padding: 50px 40px;
     }
 
     .about-image {
-      flex: 1;
-      padding-right: 40px;
+      width: 40%;
     }
 
     .about-image img {
-      max-width: 100%;
+      width: 100%;
       height: 100%;
-      border-radius: 10px;
     }
 
     .about-content {
+      width: 55%;
       height: 100%;
       flex: 1;
-      background-color: #fff;
       border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding-left: 20px;
     }
 
     .about-content h1 {
       text-align: center;
       color: rgb(0, 0, 0);
-      font-size: 2vw;
+      font-size: 1.4rem;
       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-      /* margin-left: 240px; */
-      /* margin-bottom: 0px; */
     }
 
     .text {
       margin-top: 14px;
-      text-align: center;
+      text-align: justify;
       color: #666;
       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       font-size: 15px;
@@ -73,100 +69,18 @@
     }
 
  
-    @media only screen and (max-width: 768px) {
-        .about-content {
-          width: 100vw;
-          height: 50vh;
-          padding: 20px;
-          margin-top: 20px;
-        }
-      
-        .about-image {
-          flex: initial;
-          width: 100vw;
-          height: 50vh;
-          padding-right: 0;
-        }
-      
-        .about-image img {
-          height: 100%;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-          }
-          
-          .about-section {
-            display: flex;
-            flex-direction: column-reverse; /* Stack content in mobile view */
-            align-items: center;
-            padding: 50px 20px; /* Adjusted padding for mobile */
-          }
-          
-          .about-image {
-            width: 100vw;
-            height: 50vh;
-            overflow: hidden; /* Prevent image overflow */
-            border-radius: 10px;
-          }
-          
-          .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Maintain aspect ratio */
-            border-radius: 10px;
-          }
-          
-          .about-content {
-            width: 100vw;
-            height: 50vh;
-            overflow: hidden; /* Prevent content overflow */
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px; /* Adjusted padding for mobile */
-            text-align: center;
-            /* position: relative; */
-          }
-          
-          .about-content h1 {
-            color: #333;
-            /* left: 5%; */
-            font-size: 24px; 
-            text-align: center; /* Centered on mobile */
-            margin-bottom: 10px; /* Adjusted margin for mobile */
-            /* margin-right: 1  0vw; */
-            /* width: 30vw; */
-            /* margin-left: 12vw; */
-          
-
-          }
-          
-          .text {
-            margin: 10px 0; /* Adjusted margin for mobile */
-            color: #666;
-            font-size: 16px; /* Adjusted font size for mobile */
-            line-height: 1.6;
-          }
-          
-          .skills {
-            margin-top: 20px; /* Adjusted margin for mobile */
-            display: flex;
-            justify-content: center;
-          }
-          
-          .skills a {
-            display: inline-block;
-            color: #201d1d;
-            font-weight: bold;
-            border-radius: 5px;
-            margin: 0 5px; /* Adjusted margin for mobile */
-            cursor: pointer;
-            font-size: 12px;
-            transition: background-color 0.3s ease;
-          }
-          
-      }
+@media only screen and (max-width: 768px) {
+  .about-section {
+    flex-direction: column-reverse; 
+    padding: 50px 20px; 
+  }
+  .about-image{
+    width: 100%;
+  }
+  .about-content{
+    width: 100%;
+    padding-left: 0px;
+    padding-bottom: 10px;
+  }
+}
       

@@ -5,15 +5,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
- font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 50px 40px;
 
 }
 #services>h1{
+  margin-bottom: 1.5rem;
   text-align: center;
-  padding: 1vw 1vw;
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: black;
-  /* border-bottom: 1px solid black; */
   background-color: #5c575705;
   transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
 }
@@ -28,7 +28,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap; /* Initially set to wrap on all screens */
-  padding: 3vh 1vw;
+  /* padding: 3vh 1vw; */
 }
 
 .cantainer .cart {
@@ -48,7 +48,7 @@
 .cart h3 {
   margin-top: 4vh;
   text-align: center;
-  font-size: 22px;
+  font-size: 1.2rem;
   color: rgb(15, 14, 14);
   /* font-weight: 200; */
 }

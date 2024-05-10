@@ -31,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Get /
 app.use("/", require('./router/indexRouter'));
-app.use("/lounge", require('./router/loungeRouter'))
-app.use("/shop", require('./router/shopRouter'))
+app.use("/", require('./router/loungeRouter'))
+app.use("/", require('./router/shopRouter'))
 
 
 
@@ -40,7 +40,8 @@ app.use("/shop", require('./router/shopRouter'))
 
 
 app.all("*", (req, res, next)=>{
-    res.send("lucky error");
+    res.status(404).render('noRouteErr', { message: "Page not found" }); // Render the error page with the message
+
 })
 
 

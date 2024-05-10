@@ -19,13 +19,15 @@
 </head>
 <body>
     <header class="header">
-    <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+      <a href="/">
+        <img src="/images/shyama.-removebg-preview.png" alt="image" class="logo">
+      </a> 
     <!-- <nav class="navbar"> -->
       <ul class="main-nav">
-        <li><a href="/shop/shopProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
+        <li><a href="/shopProviderLogin"><i class="ri-arrow-left-fill"></i></a></li>
         <li><a href="/">Home</a></li>
         <li><a href="#footer-container" >Contact</a></li>
-        <form action="/shop/logout-shop" method="POST">
+        <form action="/logout-shop" method="POST">
           <button class="sign_out_res btn" >signout</button>
         </form>
       </ul>
@@ -33,7 +35,7 @@
       <ul class="burgger">
         <li><a href="/">Home</a></li>
         <li><a href="#footer-container" >Contact</a></li>
-        <form action="/shop/logout-shop" method="POST">
+        <form action="/logout-shop" method="POST">
           <button class="sign_out btn" >logout</button>
         </form>
       </ul>
@@ -44,7 +46,7 @@
     <div id="admin">
       <h1 class="product">Shops</h1>
       <h1>Welcome <span class="username"></span> <%= shopUser.shopName %> </span> </h1>
-      <button><a href="/shop/shopRegistration">Add New Shop</a></button>
+      <button><a href="/shopRegistration">Add New Shop</a></button>
 
       <div class="container">
               <% for(var i=0;i< shops.length; i++){ %>
@@ -52,7 +54,7 @@
   
                 <div class="owner_name">
                   <h1><%= shops[i].shopName %></h1>
-                  <a href="/shop/shopadminforaddingitems/<%= shops[i]._id %>"> check item </a>
+                  <a href="/shopadminforaddingitems/<%= shops[i]._id %>"> check item </a>
                 </div>
                   
                 <p>station location: <%= shops[i].station_Name %></p>
@@ -63,15 +65,15 @@
                   
                   
   
-                  <form action="/shop/edit_shop"  method="post">
+                  <form action="/edit_shop"  method="post">
                     
-                    <input type="text" id="name" name="shopName" placeholder="<%= shops[i].shopName %>" required>
+                    <input type="text" id="name" name="shopName" value="<%= shops[i].shopName %>" required>
   
-                    <input type="text" id="station" name="station" placeholder="<%= shops[i].station_Name %>">
+                    <input type="text" id="station" name="station" value="<%= shops[i].station_Name %>">
   
-                    <input type="tel" id="phone" name="shopPhoneNo" placeholder="<%= shops[i].shopPhoneNo %>" >
+                    <input type="tel" id="phone" name="shopPhoneNo" value="<%= shops[i].shopPhoneNo %>" >
   
-                    <input type="email" id="email" name="shopEmail" placeholder="<%= shops[i].shopEmail %>" required>
+                    <input type="email" id="email" name="shopEmail" value="<%= shops[i].shopEmail %>" required>
   
   
                 <input type="text" name="shopId_for_delete" value="<%= shops[i]._id %>" style="visibility: hidden;">
@@ -79,7 +81,7 @@
                   <button class="small_btn" type="submit">edit shop Infom</button>
   
                   </form>
-                  <form action="/shop/delete_shop"  method="post">
+                  <form action="/delete_shop"  method="post">
                     <input type="hidden" value="<%= shops[i]._id %>" name="shopId_for_delete">
                     <button  type="submit" class="small_btn delete">Delete Shop </button>
                   </form>

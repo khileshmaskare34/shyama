@@ -43,7 +43,7 @@ exports.shop_provider_login = async (req, res, next) => {
             res.cookie('Token', token, { httpOnly: true, maxAge: 1.728e8 });
             res.cookie('shopProvider_email', shopUser.shopEmail, { httpOnly: true, maxAge: 1.728e8 });
 
-            res.redirect("/shop/shop_provider_admin");
+            res.redirect("/shop_provider_admin");
         }
     } catch (error) {
         console.error("An error occurred:", error);
@@ -64,7 +64,7 @@ exports.shop_provider_register = async (req, res, next) => {
         
         if (savedShopProvider) {
             res.cookie('shopProvider_email', req.body.shopEmail);
-            res.redirect('/shop/shopRegistration');
+            res.redirect('/shopRegistration');
         } else {
             console.log("Failed to save shop provider");
             res.status(500).send("Failed to save shop provider");
@@ -114,6 +114,11 @@ exports.add_shops = async (req, res, next) => {
     try {
         let perticuler_shop = await shopRegistration.findOne({ _id: req.params.id });
 
+        console.log("siyaji"+perticuler_shop)
+
+        let orderd = await orderItem.findOne({ item_id: perticuler_shop._id})
+        console.log("kiki"+orderd)
+
         if (!perticuler_shop) {
             console.log("Shop not found");
             return res.status(404).send("Shop not found");
@@ -132,7 +137,7 @@ exports.delete_shop = async (req, res, next) => {
     try {
         await shopRegistration.findOneAndDelete({ _id: req.body.shopId_for_delete });
   
-        res.redirect('/shop/shop_provider_admin');
+        res.redirect('/shop_provider_admin');
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
@@ -159,7 +164,7 @@ exports.edit_shop = async (req, res, next) => {
             return res.status(404).send("Shop not found");
         }
 
-        res.redirect('/shop/shop_provider_admin');
+        res.redirect('/shop_provider_admin');
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
@@ -253,7 +258,7 @@ exports.add_items = async (req, res, next) => {
 
         await new_item.save();
 
-        res.redirect("/shop/shop_provider_admin");
+        res.redirect("/shop_provider_admin");
     } catch (error){
         console.error("An error occurred:", error);
         res.status(500).send("Internal Server Error");
@@ -263,6 +268,8 @@ exports.add_items = async (req, res, next) => {
 exports.add_items_id = async (req, res, next) => {
     try {
         var newShop = await shopRegistration.findOne({ _id: req.params.id });
+
+        // let ordered_item = await orderItem.findOne({ _id:})
 
         if (!newShop) {
             console.log("Shop not found");
@@ -294,7 +301,7 @@ exports.delete_item = async (req, res, next) => {
         }
 
         console.log('Deleted');
-        var pathji = `/shop/shopadminforaddingitems/` + shopForId._id;
+        var pathji = `/shopadminforaddingitems/` + shopForId._id;
         await shop_items.findOneAndDelete({ _id: req.body.itemId_for_delete });
 
         res.redirect(pathji);
@@ -327,7 +334,7 @@ exports.edit_item = async (req, res, next) => {
             return res.status(404).send("Item not found");
         }
 
-        res.redirect('/shop/shop_provider_admin');
+        res.redirect('/shop_provider_admin');
     } catch (error) {
         console.error("An error occurred:", error);
         res.status(500).send("An error occurred");
@@ -419,6 +426,8 @@ exports.choose_shop_id = async(req, res, next)=>{
     res.render("forParticulerFood", {shop, Shop_D, shopitems} )
 }
 exports.choose_shop_id = async(req, res, next) => {
+    const originalUrl = req.path;
+    if(req.cookies.user_email || req.cookies.Token){
     try {
         let shop = await shop_items.findOne({ _id: req.params.id });
         let Shop_D = await shopSchema.findOne({ shop_id: shop.shop_id });
@@ -437,19 +446,25 @@ exports.choose_shop_id = async(req, res, next) => {
         // Handle the error and send an appropriate response to the client
         res.status(500).send("Internal Server Error");
     }
+   }else{
+    console.log("luc", originalUrl)
+    res.redirect(`/user_signin?originalUrl=${encodeURIComponent(originalUrl)}`);
+   }
 };
 
 exports.selected_item_id = async(req, res, next)=>{
     let item = await shop_items.findOne({_id : req.params.id})
     let user = await users.findOne({email: req.cookies.user_email})
+
     let Shop_D = await shopSchema.findOne({ shop_id: item.shop_id });
 
     let quantity = req.body.qty
+
     var newOrder_food = new orderItem({
         item_Name:item.item_Name,
         item_id:item._id,
         price:item.price,
-        shop_id:item.shop_id,
+        shop_id:Shop_D._id,
         user_id:user._id,
         quantity:quantity
     })

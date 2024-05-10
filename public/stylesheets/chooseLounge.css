@@ -3,7 +3,7 @@ body, ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-family: Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 /* Styling for the main container */
@@ -15,7 +15,7 @@ body, ul {
 
 /* Styling for the heading */
 h1 {
-    font-size: 28px;
+    font-size: 1.8rem;
     color: #333;
     margin-bottom: 10px;
 }
@@ -63,7 +63,7 @@ h1 {
 }
 
 .lounge-details p {
-    font-size: 16px;
+    font-size: 1rem;
     color: #777;
     margin-bottom: 20px;
 }
@@ -76,6 +76,7 @@ h1 {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
+    font-size: 1rem;
 }
 
 .lounge-details a:hover {

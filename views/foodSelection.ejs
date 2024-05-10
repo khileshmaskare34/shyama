@@ -6,24 +6,20 @@
     <title>Food Categories</title>
 
 <style>
-    @font-face {
-        font-family: chapman;
-        src: url("./font/Chapman.ttf");
-    }
+   
   body {
-    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;  
     overflow-x: hidden;  
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
    }   
 
 
    .food-section{
-    /* padding-top: 5vh; */
+    padding: 50px 40px;
     width: 100%;
     /* height: 100vh; */
-    /* background-color: rgb(228, 196, 14); */
    }
    h1{
     padding: 10px 5px;
@@ -38,73 +34,50 @@
    }
    .food-section .top{
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: space-between;
     align-items: center;    
     width: 100%;
-    padding: 5vh 5vw;
-    /* height: 60vh; */
-    /* background-color: rgb(205, 134, 52); */
+    padding: 5vh 0vw;
    }
    .f-bottom{
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    /* height: 40vh; */
-    padding-left: 2vw;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;
     scrollbar-width: thin;
     scrollbar-color: #333 #ccc;
     cursor: pointer;
-    /* background-color: rgb(198, 54, 54); */
    }
    .food-text{
     position: relative;
     padding: 20px 20px;
     width: 50%;
-    /* height: 40vh; */
-    box-shadow: 0px 0px 15px 2px rgb(186, 182, 182); 
-    /* background-color: yellow; */
-   }
-   /* .food-text::after{
-    content: "";
-    width: 15vw;
-    height: 15vw;
-    position: absolute;
-    top: -20%;
-    right: -20%;
-    border-radius: 50%;
-    animation: Ani-circle 200s linear infinite;
-    background-image: url("https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg");
-    background-size: cover;
-   } */
-   @keyframes Ani-circle {
-     0%{
-        transform: rotate(0deg);
-     }
-     100%{
-        transform: rotate(360deg);
-     }
    }
    .food-text>h2{
     text-align: center;
-    font-family: chapman;
     color: #006e4b;
+    font-size: 2.5rem;
    }
    .food-text>h3{
     width: 90%;
-    font-size: 50px;
     font-weight: 500;
+    font-size: 1.4rem;
+    margin-top: 2vh;
    }
    .food-text>p{
-    margin-top: 1vh;
+    margin-top: 1.5vh;
     margin-bottom: 2vh;
+    font-size: 1rem;
+   }
+   .top .img{
+    width: 45%;
    }
    .img img{
-    margin-left: 10vw;
-    width: 400px;
+    /* margin-left: 10vw; */
+    width: 100%;
    }
   
    .box1>img{
@@ -153,10 +126,13 @@
   text-decoration: none;
   color: #333;
 }
-select{
-    padding: 10px;
-    font-size: 15px;
+.station{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 10px;
+  font-size: 1.2rem; 
 }
+
 
 .product-list {
   display: flex;
@@ -171,33 +147,49 @@ select{
   position: relative;
   flex: 0 0 auto;
   width: 15vw;
-  height: 30vh;
-  /* background-color: red; */
+  height: 35vh;
 }
-
-
 .f-bottom::-webkit-scrollbar {
   width: 5px;
-  height: 5px;
+  height: 1px;
   transition: cubic-bezier(0.19, 1, 0.22, 1)1s;
 }
 
 /* Tablet styles */
 @media only screen and (max-width: 768px) {
+  .food-section{
+    padding: 20px 20px;
+    width: 100%;
+   }
   .top {
     flex-direction: column;
-    height: auto;
-  }
+    padding: 0vh 0vw;
+
+  }   
+  .top .img{
+    width: 100%;
+   }
 
   .food-text {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
   }
-
-  .img {
-    margin-top: 20px;
-  }
-
+  .food-text>h2{
+    font-size: 2rem;
+   }
+   .food-text>h3{
+    font-size: 1.5rem;
+   }
+  .food-text>p{
+    text-align: justify;
+   }
+   .popup {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 90%;
+    position: relative;
+    transition: all 2s ease-in-out;
+   }
   .product-list .box1 {
     width: 30vw;
   }
@@ -205,33 +197,19 @@ select{
 
 /* Phone styles */
 @media only screen and (max-width: 480px) {
-  .food-text {
-    width: 90%;
-  }
+  
 
   .product-list .box1 {
     width: 45vw;
   }
-  .img img{
-    width: 350px;
-   }
-
-
 }
 
-/* General styles for larger screens */
-/* Add more styles for larger screens as needed */
 @media only screen and (min-width: 1200px) {
-  .food-text {
-    font-size: 18px;
-  }
-
   .product-list .box1 {
     width: 20vw;
   }
 }
 
-/* Additional responsive styles can be added for other devices and screen sizes */
 </style>
 </head>
 <body>
@@ -243,7 +221,9 @@ select{
                 <h2>welcome to our food service</h2>
                 <h3>Choosing tasty food in your location</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis laudantium, quae architecto reprehenderit, quidem minus, blanditiis sunt facere maxime dolorum eligend</p>
-                <a class="button" href="#popup1"><button>Explore</button></a>
+                <!-- when you offer two service then this work -->
+                <!-- <a class="button" href="#popup1"><button>Explore</button></a> -->
+                <button>Explore</button>
 
                 
 
@@ -252,22 +232,23 @@ select{
                         <h2>Select your station location</h2>
                         <a class="close" href="#">&times;</a>
 
-                       <form action="/shop/showFoodAtStation" method="post" >
+                       <form action="/showFoodAtStation" method="post" >
                         <select class="station" name="stationName">
                             <% for(var i=0;i< station.length; i++){ %>
                               <option value="<%= station[i] %>" name="<%= station[i] %>" ><%= station[i] %></option>
                             <% } %>
-                       
                         </select>
-                        <button type="submit">Explore</button>
-                    </form> 
+                        <div >
+                         <button type="submit">Explore</button>
+                        </div>
+                        </form> 
                     
                     </div>
                 </div>
 
             </div>
             <div class="img">
-                <img src="/images/food_home.png" alt="">
+                <img src="/images/HomepageImage/homepageFood.jpg" alt="">
             </div>
          </div>
          

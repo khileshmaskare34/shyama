@@ -60,43 +60,34 @@ exports.homepage = async function(req, res, next) {
 
 exports.user_signin = async function (req, res, next) {
     try {
-        const email = req.body.email;
+        const email = req.body.email; 
         const pass = req.body.password;
+        const originalUrl = req.body.originalUrl || '/'; 
 
+        console.log("old url", originalUrl)
         if (!email || !pass) {
-            console.log('Please enter email and password');
             return res.status(400).render('login', { error: 'Please enter valid email and password.' });
         }
 
         const User = await users.findOne({ email: email });
 
         if (!User || !(pass === User.password)) {
-            // Incorrect password or user not found
-            console.log("Login failed: Incorrect email or password");
             return res.status(401).render('signin', { error: 'Incorrect email or password !' });
         } else {
             const token = jwt.sign(
                 { id: User._id },
                 'mynameispulkitupadhyayfromharda',
                 {
-                    expiresIn: '10d',
+                    expiresIn: '10m',
                 }
             );
-            res.cookie('Token', token, { httpOnly: true, maxAge: 1.728e8 });
-            res.cookie('user_email', User.email);
-
-            let loungess = await loungeSchema.find();
-            let station = [];
-            for (let i = 0; i < loungess.length; i++) {
-                let station1 = loungess[i].stationLocation;
-                station.push(station1);
-            }
-
-            res.redirect('/');
+            res.cookie('Token', token, { httpOnly: true, maxAge: 10 * 60 * 1000});
+            res.cookie('user_email', User.email, { httpOnly: true, maxAge: 10 * 60 * 1000});
+            res.redirect(originalUrl);
         }
     } catch (error) {
         console.error("An error occurred:", error);
-        next(error); // Pass the error to the error handling middleware
+        next(error); 
     }
 }
 
@@ -119,13 +110,11 @@ exports.user_signup = async (req, res, next) => {
             { id: newUser._id },
             'mynameispulkitupadhyayfromharda',
             {
-                expiresIn: '10d',
+                expiresIn: '10m',
             }
         );
-
-        res.cookie('Token', token, { httpOnly: true, maxAge: 1.728e8 });
-        res.cookie('user_email', newUser.email);
-
+        res.cookie('Token', token, { httpOnly: true, maxAge: 10 * 60 * 1000 });
+        res.cookie('user_email', newUser.email, {maxAge: 10 * 60 * 1000 });
         res.render('loggedInindex', { station });
     } catch (error) {
         console.error("An error occurred:", error);
@@ -140,6 +129,7 @@ exports.user_signout = async (req, res, next) =>{
           'mynameispulkitupadhyayfromharda',
           (err, authData) => {
             if (err) {
+                console.log("jjjjjjjjjjj")
               res.sendStatus(403);
             } else {
               res.clearCookie('Token');
@@ -153,17 +143,17 @@ exports.user_signout = async (req, res, next) =>{
 exports.user_account = async function (req, res, next) {
     try {
         let email = req.cookies.user_email;
+        let Token = req.cookies.Token;
         let user = await users.findOne({ email: email });
-        console.log("lux" + user)
+        // console.log("lux" + user, Token)
 
-        if (!user) {
-            console.log("User not found");
-            return res.status(404).send("User not found");
+        if (!user || !Token) {
+           return res.redirect('/');
         }
 
         let orders = await orderdLounge.find({ userId: user._id })
-        console.log("Orders: ", orders);
-        console.log("users", user)
+        // console.log("Orders: ", orders);
+        // console.log("users", user)
 
         res.render('userAccountPage', { user, orders });
     } catch (error) {
@@ -223,49 +213,50 @@ exports.get_choice_filling = async(req, res)=>{
 }
 
 exports.get_choose_lounge = async (req, res, next) => {
-   
-   if(req.cookies.user_email || req.cookies.Token){
-    try {
-        let laungeId = req.params.id;
-        let launge = await loungeSchema.findOne({ _id: laungeId });
+    const originalUrl = req.path; // Use req.path to get the path portion of the URL
 
-        if (!launge) {
-            console.log("Lounge not found");
-            return res.status(404).send("Lounge not found");
-        }
+    // console.log("orignal", originalUrl)
+    if (req.cookies.user_email || req.cookies.Token) {
+        try {
+            let laungeId = req.params.id;
+            let launge = await loungeSchema.findOne({ _id: laungeId });
 
-        let laungesWithOrders = await orderdLounge.find({ loungeId: laungeId });
-        let seatss = [];
-
-        for (var i = 0; i < laungesWithOrders.length; i++) {
-            let jiji = laungesWithOrders[i].seats;
-            seatss.push(jiji);
-        }
-
-        let totalSeats = [];
-
-        for (var k = 0; k < seatss.length; k++) {
-            var ppp = seatss[k];
-            for (var j = 0; j < ppp.length; j++) {
-                totalSeats.push(ppp[j]);
+            if (!launge) {
+                console.log("Lounge not found");
+                return res.status(404).send("Lounge not found");
             }
+
+            let laungesWithOrders = await orderdLounge.find({ loungeId: laungeId });
+            let seatss = [];
+
+            for (var i = 0; i < laungesWithOrders.length; i++) {
+                let jiji = laungesWithOrders[i].seats;
+                seatss.push(jiji);
+            }
+
+            let totalSeats = [];
+
+            for (var k = 0; k < seatss.length; k++) {
+                var ppp = seatss[k];
+                for (var j = 0; j < ppp.length; j++) {
+                    totalSeats.push(ppp[j]);
+                }
+            }
+
+            let email = req.cookies.user_email;
+            let userx = await users.findOne({ email: email });
+
+            res.render('shetbook', { launge, totalSeats, userx });
+        } catch (error) {
+            console.error("An error occurred:", error);
+            res.status(500).send("An error occurred");
         }
-
-        let email = req.cookies.user_email;
-        let userx = await users.findOne({ email: email });
-
-        res.render('shetbook', { launge, totalSeats, userx });
-    } catch (error) {
-        console.error("An error occurred:", error);
-        res.status(500).send("An error occurred");
+    } else {
+        console.log("luc", originalUrl)
+        res.redirect(`/user_signin?originalUrl=${encodeURIComponent(originalUrl)}`);
     }
-
-}else{
-    res.redirect('/user_signin')
 }
 
-
-}
 
 exports.choose_lounge_id = async(req, res)=>{
     let launge = await loungeSchema.findOne({ _id: req.params.id})
@@ -273,6 +264,7 @@ exports.choose_lounge_id = async(req, res)=>{
     let user = await users.findOne({ email: req.cookies.user_email})
     let username = user.name;
     
+    console.log("lounge", launge)
 
     let seat_1;
     if(typeof req.body.seat !== 'object'){
@@ -292,8 +284,8 @@ exports.choose_lounge_id = async(req, res)=>{
     newOrder.save().then(function(dets){
       res.cookie('longe_booked_by_user', newOrder.loungeId, { httpOnly: true, maxAge: 1.728e8 });
       // res.redirect('/after_loungeBook_loggedInIndex')
-      console.log(newOrder, user)
-      res.render("selected_seat", {newOrder, user});
+      console.log("new ontyouth", newOrder, user)
+      res.render("selected_seat", {newOrder, user, launge});
     })
 }
 
@@ -329,9 +321,32 @@ exports.particuler_item = async (req, res, next) => {
 
 
 exports.seat_canslation= async (req, res, next) => {
-    console.log(req.body.order_id)
-        var order =  await orderdLounge.findOneAndDelete({_id: req.body.order_id})     
-console.log("order deleted ")
+    // var order =  await orderdLounge.findOneAndDelete({_id: req.body.order_id})     
 
-res.redirect('/yourOrder')
+    // res.redirect('/user_account')
+
+    const orderId = req.params.id;
+    const seatIndex = req.body.seat_index; // Get the seat index from the form
+
+    console.log("style", orderId, seatIndex)
+    try {
+        let order = await orderdLounge.findById(orderId);
+
+        if (!order) {
+            return res.status(404).send("Order not found");
+        }
+
+        // Remove the seat at the specified index
+        order.seats.splice(seatIndex, 1);
+        console.log("Order after splice:", order);
+        // Save the updated order
+        await order.save();
+
+        console.log("Seat deleted successfully");
+        res.redirect('/user_account');
+    } catch (error) {
+        console.error("An error occurred:", error);
+        res.status(500).send("An error occurred");
+    }
 }
+
